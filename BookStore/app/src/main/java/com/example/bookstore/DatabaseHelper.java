@@ -10,27 +10,23 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.media.MicrophoneInfo;
-import android.os.strictmode.SqliteObjectLeakedViolation;
-import android.provider.ContactsContract;
+
 
 
 import androidx.annotation.Nullable;
 
-import java.util.jar.Attributes;
-import java.util.logging.Handler;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Bookstore.db";
-    public static final String TABLE_NAME_1 = "User_Info";
+    public static final String TABLE_NAME_1 = "User_Info"; // Table 1 for user Info
     public static final String COLUMN_1_1 = "ID";
     public static final String COLUMN_1_2 = "NAME";
     public static final String COLUMN_1_3 = "NICKNAME";
     public static final String COLUMN_1_4 = "PHONE";
     public static final String COLUMN_1_5 = "PASSWORD";
 
-    public static final String TABLE_NAME_2 = "Book_Info";
+    public static final String TABLE_NAME_2 = "Book_Info"; // Table 2 for Book Info
     public static final String COLUMN_2_1 = "ID";
     public static final String COLUMN_2_2 = "NAME";
     public static final String COLUMN_2_3 = "AUTHOR";
@@ -38,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_2_5 = "PRICE";
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 3);
+        super(context, DATABASE_NAME, null, 3); //version3 means change the database twice
         //SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
     }
 
@@ -67,12 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res != -1;
     }
 
-    public Cursor getAllUser(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_NAME_1,null);
-        return res;
-    }
-
+    //Update UserInfo
     public boolean updateUser(String id, String name, String nickname,String phone, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -85,11 +76,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return flag != -1;
     }
 
+    //Delete User
     public Integer deleteUser(String username){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME_1,"NICKNAME=?",new String[]{username});
     }
 
+    //Compare the password user input with password in db
     public boolean findPassword(String username,String password){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT * FROM " + TABLE_NAME_1 + " WHERE NICKNAME = ?";
@@ -103,6 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    //findId by username
     public String findId(String username){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT * FROM " + TABLE_NAME_1 + " WHERE NICKNAME = ?";
@@ -142,7 +136,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-
+    //Insert book
     public boolean insertBook(String name, String author,String location, String price){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

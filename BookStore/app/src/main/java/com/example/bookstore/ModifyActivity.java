@@ -41,7 +41,7 @@ public class ModifyActivity extends AppCompatActivity {
         editRealName.setFocusable(false);
         editRealName.setFocusableInTouchMode(false);
 
-        modifyInfo();
+        modifyInfo(); // Onclick listener to modification page
 
 
 
@@ -51,16 +51,16 @@ public class ModifyActivity extends AppCompatActivity {
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = editRealName.getText().toString().trim(),
+                String name = editRealName.getText().toString().trim(), //display the original information
                         nick = editNickName.getText().toString().trim(),
                         phone = editPhone.getText().toString().trim(),
                         password = editPassword.getText().toString().trim();
-                if(nick.isEmpty()||phone.isEmpty()||password.isEmpty()){
+                if(nick.isEmpty()||phone.isEmpty()||password.isEmpty()){ // need to be filled in completely
                     Toast.makeText(getApplicationContext(),"Please type in information completely.",Toast.LENGTH_LONG).show();
                     return;
                 }
                 boolean flag = db.updateUser(MainActivity.GLOBAL_ID,name,nick,phone,password);
-                if(flag){
+                if(flag){ //Show result, successfully or not
                     Toast.makeText(getApplicationContext(),"Data updated successfully!",Toast.LENGTH_LONG).show();
                     MainActivity.GLOBAL_USERNAME = nick;
                     MainActivity.GLOBAL_PASSWORD = password;

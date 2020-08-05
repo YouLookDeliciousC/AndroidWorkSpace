@@ -26,14 +26,16 @@ public class BeginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_begin);
+
+        //start database & connect widgets
         db = new DatabaseHelper(this);
         editUserName = findViewById(R.id.etUserName);
         editPassword = findViewById(R.id.etPassword);
         buttonLogin = findViewById(R.id.btnLogin);
         buttonRegister = findViewById(R.id.btnRegister);
 
-        Login();
-        Register();
+        Login(); //Login function
+        Register(); // Register Func
 
     }
 
@@ -41,6 +43,7 @@ public class BeginActivity extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //intent to Register page
                 Intent i = new Intent(BeginActivity.this,RegisterActivity.class);
                 startActivity(i);
             }
@@ -52,7 +55,7 @@ public class BeginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String userName = editUserName.getText().toString().trim();
+                final String userName = editUserName.getText().toString().trim(); // Get Data
                 final String password = editPassword.getText().toString().trim();
                 if(userName.isEmpty() || password.isEmpty()){
                     Toast.makeText(getApplicationContext(),"Please enter YOUR USERNAME & PASSWORD.",Toast.LENGTH_LONG).show();
@@ -66,12 +69,10 @@ public class BeginActivity extends AppCompatActivity {
                         public void run() {
                             Intent i = new Intent(BeginActivity.this,HomeActivity.class);
                             startActivity(i);
-                            MainActivity.GLOBAL_USERNAME=userName;
+                            MainActivity.GLOBAL_USERNAME=userName; // Set global variables
                             MainActivity.GLOBAL_PASSWORD=password;
                             MainActivity.GLOBAL_ID=db.findId(userName);
 
-
-                            //finish();
                         }
                     },2000);
                 }else{
@@ -83,6 +84,7 @@ public class BeginActivity extends AppCompatActivity {
             }
         });
     }
+    //Show message
     private void showMessage(String title, String buffer) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);

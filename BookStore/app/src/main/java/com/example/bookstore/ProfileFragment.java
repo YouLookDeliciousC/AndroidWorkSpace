@@ -1,12 +1,10 @@
 package com.example.bookstore;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +42,7 @@ public class ProfileFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         TextView t = getActivity().findViewById(R.id.etPUsername);
-        t.setText("User Name: " + MainActivity.GLOBAL_USERNAME);
+        t.setText("User Name: " + MainActivity.GLOBAL_USERNAME); // show user name
         db = new DatabaseHelper(getContext());
 
         buttonModifyData = getActivity().findViewById(R.id.btnModifyData);
@@ -53,10 +51,10 @@ public class ProfileFragment extends Fragment {
         buttonCall = getActivity().findViewById(R.id.btnCall);
 
 
-        modifyData();
-        deleteAccount();
-        logout();
-        contactUs();
+        modifyData(); // modify user info
+        deleteAccount(); // delete account
+        logout(); // logout
+        contactUs(); // implicit intent
 
     }
 
@@ -66,7 +64,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(Intent.ACTION_CALL);
                 i.setData(Uri.parse("tel:" + OFFICE_PHONE));
-
+                // check permission
                 if(ContextCompat.checkSelfPermission(getContext(),CALL_PHONE)== PackageManager.PERMISSION_GRANTED){
                     startActivity(i);
                 }else{

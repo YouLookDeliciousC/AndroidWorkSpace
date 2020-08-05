@@ -1,15 +1,12 @@
 package com.example.bookstore;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.VideoView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -34,7 +31,7 @@ public class VideoFragment extends Fragment {
         VideoView videoView = getActivity().findViewById(R.id.vvVideo1);
         VideoView videoView1 = getActivity().findViewById(R.id.vvVideo2);
         VideoView videoView2 = getActivity().findViewById(R.id.vvVideo3);
-
+        //video 1
         String videoPath = "android.resource://"+getActivity().getPackageName()+"/"+R.raw.howtostudy;
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
@@ -42,7 +39,7 @@ public class VideoFragment extends Fragment {
         MediaController mediaController = new MediaController(getContext());
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);
-
+        //video 2
         String videoPath1 = "android.resource://"+getActivity().getPackageName()+"/"+R.raw.howtogetyourbraintofocus;
         Uri uri1 = Uri.parse(videoPath1);
         videoView1.setVideoURI(uri1);
@@ -50,7 +47,7 @@ public class VideoFragment extends Fragment {
         MediaController mediaController1 = new MediaController(getContext());
         videoView1.setMediaController(mediaController1);
         mediaController1.setAnchorView(videoView1);
-
+        //video 3
         String videoPath2 = "android.resource://"+getActivity().getPackageName()+"/"+R.raw.howtomakestressyourfriend;
         Uri uri2 = Uri.parse(videoPath2);
         videoView2.setVideoURI(uri2);
@@ -58,7 +55,7 @@ public class VideoFragment extends Fragment {
         MediaController mediaController2 = new MediaController(getContext());
         videoView2.setMediaController(mediaController2);
         mediaController2.setAnchorView(videoView2);
-
+        // let it focus on first one video view when initial
         videoView.setFocusable(true);
         videoView.setFocusableInTouchMode(true);
         videoView.requestFocus();

@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.ImageView;
-
+// plash screen
 public class MainActivity extends AppCompatActivity {
 
     public static String GLOBAL_ID = "";
@@ -16,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     public static String GLOBAL_REALNAME = "";
 
     int loading_time = 4000;
-    ImageView ivWelcome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent i = new Intent(MainActivity.this,BeginActivity.class);
+                Intent i = new Intent(MainActivity.this,BeginActivity.class); // To login page
                 startActivity(i);
                 finish();
 

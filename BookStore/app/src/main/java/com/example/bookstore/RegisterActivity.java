@@ -23,7 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        // connect db & link to widgets
         db = new DatabaseHelper(this);
 
         editName = findViewById(R.id.etRName);
@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String nick = editNickname.getText().toString().trim();
                 String phone = editPhone.getText().toString().trim();
                 String password = editPassword.getText().toString();
-
+                //Determine whether it is empty
                 if(name.isEmpty() || nick.isEmpty() || phone.isEmpty() || password.isEmpty()){
                     Toast.makeText(getApplicationContext(),"Please enter your information COMPLETELY.", Toast.LENGTH_LONG).show();
                     return;
@@ -61,7 +61,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                 }else{
                     Toast.makeText(getApplicationContext(),"Register Error!",Toast.LENGTH_LONG).show();
-                    //return;
                 }
             }
         });

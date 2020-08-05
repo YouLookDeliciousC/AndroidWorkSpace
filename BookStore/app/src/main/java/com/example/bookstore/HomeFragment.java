@@ -11,8 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -63,13 +61,10 @@ public class HomeFragment extends Fragment {
         while (cursor.moveToNext()){
             booksList.add(new Book(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4)));
         }
-        //ArrayAdapter<Person> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.);
-        //lvBooks.setAdapter(arrayAdapter);
         ArrayAdapter<Book> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, booksList);
         lvBooks.setAdapter(arrayAdapter);
-        //booksList.clear();
 
-        refreshLv();
+        refreshLv(); // Refresh list view
         queryByName();
 
         addBook();

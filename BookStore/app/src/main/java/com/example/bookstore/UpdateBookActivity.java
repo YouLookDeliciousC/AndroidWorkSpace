@@ -27,11 +27,11 @@ public class UpdateBookActivity extends AppCompatActivity {
         btnQuery = findViewById(R.id.btnUQuery);
         btnUpdate = findViewById(R.id.btnUUpdate);
 
-        queryAllInfo();
-        updateData();
+        queryAllInfo(); // Query book info first
+        updateData(); // then modify the info and submit
     }
 
-    private void updateData() {
+    private void updateData() { //get user input and submit to db
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +46,7 @@ public class UpdateBookActivity extends AppCompatActivity {
                 }
 
                 boolean flag = db.updateBook(id, name, author, loca, price);
-                if(flag){
+                if(flag){ // determine update successfully or not
                     Toast.makeText(getApplicationContext(),"Update book info. successfully!",Toast.LENGTH_LONG).show();
                 }
                 else{
@@ -56,7 +56,7 @@ public class UpdateBookActivity extends AppCompatActivity {
         });
     }
 
-    private void queryAllInfo() {
+    private void queryAllInfo() { // Find item and display all related info
         btnQuery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +74,6 @@ public class UpdateBookActivity extends AppCompatActivity {
 
                 }
                 else{
-                    //Toast.makeText(getApplicationContext(), String.valueOf(db.countItem(id)),Toast.LENGTH_LONG).show();
                     editName.setText(db.findBookName(id));
                     editAuthor.setText(db.findBookAuthor(id));
                     editLoca.setText(db.findBookLocation(id));
