@@ -32,6 +32,8 @@ public class VideoFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         VideoView videoView = getActivity().findViewById(R.id.vvVideo1);
+        VideoView videoView1 = getActivity().findViewById(R.id.vvVideo2);
+        VideoView videoView2 = getActivity().findViewById(R.id.vvVideo3);
 
         String videoPath = "android.resource://"+getActivity().getPackageName()+"/"+R.raw.howtostudy;
         Uri uri = Uri.parse(videoPath);
@@ -40,5 +42,26 @@ public class VideoFragment extends Fragment {
         MediaController mediaController = new MediaController(getContext());
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);
+
+        String videoPath1 = "android.resource://"+getActivity().getPackageName()+"/"+R.raw.howtogetyourbraintofocus;
+        Uri uri1 = Uri.parse(videoPath1);
+        videoView1.setVideoURI(uri1);
+
+        MediaController mediaController1 = new MediaController(getContext());
+        videoView1.setMediaController(mediaController1);
+        mediaController1.setAnchorView(videoView1);
+
+        String videoPath2 = "android.resource://"+getActivity().getPackageName()+"/"+R.raw.howtomakestressyourfriend;
+        Uri uri2 = Uri.parse(videoPath2);
+        videoView2.setVideoURI(uri2);
+
+        MediaController mediaController2 = new MediaController(getContext());
+        videoView2.setMediaController(mediaController2);
+        mediaController2.setAnchorView(videoView2);
+
+        videoView.setFocusable(true);
+        videoView.setFocusableInTouchMode(true);
+        videoView.requestFocus();
+
     }
 }
