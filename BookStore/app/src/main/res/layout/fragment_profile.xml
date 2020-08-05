@@ -7,7 +7,7 @@
         android:id="@+id/fl"
         android:layout_width="match_parent"
         android:layout_height="230dp"
-        android:background="#A903A9F4">
+        android:background="#A90307F4">
 
 
         <ImageView

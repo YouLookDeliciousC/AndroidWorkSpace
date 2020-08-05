@@ -53,7 +53,7 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="101dp"
+        android:layout_width="150dp"
         android:layout_height="48dp"
         android:layout_marginStart="158dp"
         android:layout_marginEnd="165dp"
@@ -67,14 +67,16 @@
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="156dp"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="143dp"
+        android:layout_marginEnd="148dp"
         android:layout_marginBottom="15dp"
         android:text="Register"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
     <TextView
