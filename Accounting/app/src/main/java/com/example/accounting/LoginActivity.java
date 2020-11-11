@@ -36,17 +36,17 @@ public class LoginActivity extends AppCompatActivity {
         buttonRegister = findViewById(R.id.tvLoginRegister);
         buttonForget = findViewById(R.id.tvLoginForget);
 
-        Login();
-        Register();
-        ForgetPassword();
+        login();
+        register();
+        forgetPassword();
 
     }
 
-    private void ForgetPassword() {
+    private void forgetPassword() {
 
     }
 
-    private void Register() {
+    private void register() {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void Login() {
+    private void login() {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent i = new Intent(LoginActivity.this,HomeActivity.class);
+                            Intent i = new Intent(LoginActivity.this,UserProfileActivity.class);
                             startActivity(i);
                             MainActivity.GLOBAL_USERNAME=userName; // Set global variables
                             MainActivity.GLOBAL_PASSWORD=password;
