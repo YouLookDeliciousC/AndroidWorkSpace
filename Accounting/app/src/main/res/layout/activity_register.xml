@@ -6,4 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
+    <RelativeLayout
+        android:id="@+id/rlRegister1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/etRegisterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Your Name"
+            android:inputType="textPersonName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:width="300dp"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/etRegisterNick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nick Name"
+            android:inputType="textPersonName"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/etRegisterName"
+            android:layout_marginTop="30dp"
+            android:width="300dp"
+
+            />
+
+
+
+        <EditText
+            android:id="@+id/etRegisterPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Phone Number"
+            android:inputType="textPersonName"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/etRegisterNick"
+            android:layout_marginTop="30dp"
+            android:width="300dp" />
+
+        <EditText
+            android:id="@+id/etRegisterPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            tools:layout_editor_absoluteX="79dp"
+            tools:layout_editor_absoluteY="366dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/etRegisterPhone"
+            android:layout_marginTop="30dp"
+            android:width="300dp"/>
+
+        <EditText
+            android:id="@+id/etRegisterCPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/etRegisterPassword"
+            android:layout_marginTop="30dp"
+            android:width="300dp" />
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/etRegisterCPassword"
+            android:layout_marginTop="30dp"
+            android:width="300dp"/>
+
+    </RelativeLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

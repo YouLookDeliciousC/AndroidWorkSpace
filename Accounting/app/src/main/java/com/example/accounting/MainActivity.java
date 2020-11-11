@@ -8,6 +8,12 @@ import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static String GLOBAL_ID = "";
+    public static String GLOBAL_USERNAME = "";
+    public static String GLOBAL_PASSWORD = "";
+    public static String GLOBAL_PHONE = "";
+    public static String GLOBAL_REALNAME = "";
+
     int loading_time = 1000;
 
     @Override

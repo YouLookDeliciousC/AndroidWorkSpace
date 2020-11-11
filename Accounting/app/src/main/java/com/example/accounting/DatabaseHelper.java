@@ -2,6 +2,7 @@ package com.example.accounting;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -46,6 +47,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_1_5,password);
         long res = db.insert(TABLE_NAME_1,null,contentValues);
         return res != -1;
+    }
+
+    public boolean findPassword(String username,String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM " + TABLE_NAME_1 + " WHERE NICKNAME = ?";
+        Cursor cursor = db.rawQuery(sql,new String[]{username});
+        int columnIndex = cursor.getColumnIndex(COLUMN_1_5);
+        String res="";
+        while (cursor.moveToNext()){
+            res = cursor.getString(columnIndex);
+            return password.equals(res);
+        }
+        return false;
+    }
+
+    public String findId(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM " + TABLE_NAME_1 + " WHERE NICKNAME = ?";
+        Cursor cursor = db.rawQuery(sql,new String[]{username});
+        int columnIndex = cursor.getColumnIndex(COLUMN_1_1);
+        String res="";
+        while (cursor.moveToNext()){
+            res = cursor.getString(columnIndex);
+            break;
+        }
+        return res;
     }
 
 
