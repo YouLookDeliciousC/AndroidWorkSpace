@@ -6,11 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class UserProfileActivity extends AppCompatActivity {
 
     DatabaseHelper db;
     LinearLayout linearLayoutTop;
+    TextView textViewUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +23,9 @@ public class UserProfileActivity extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
         linearLayoutTop = findViewById(R.id.llUserProfile1);
+        textViewUserName = findViewById(R.id.tvProfileUserName);
+
+        textViewUserName.setText(MainActivity.GLOBAL_USERNAME);
         EnterUserProfileDetail();
 
 

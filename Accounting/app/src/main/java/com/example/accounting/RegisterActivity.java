@@ -59,6 +59,15 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
+                if(db.hasSameNick(nick)){
+                    Toast.makeText(getApplicationContext(),"The nick name is in use", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(db.hasSamePhone(phone)){
+                    Toast.makeText(getApplicationContext(),"The phone number has been registered", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 if(db.insertUser(name,nick,phone,password)){
                     Toast.makeText(getApplicationContext(),"Register Successfully!",Toast.LENGTH_LONG).show();
 

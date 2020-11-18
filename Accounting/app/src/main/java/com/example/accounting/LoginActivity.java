@@ -78,6 +78,8 @@ public class LoginActivity extends AppCompatActivity {
                             MainActivity.GLOBAL_USERNAME=userName; // Set global variables
                             MainActivity.GLOBAL_PASSWORD=password;
                             MainActivity.GLOBAL_ID=db.findId(userName);
+                            MainActivity.GLOBAL_PHONE = db.findPhone(userName);
+                            finish();
 
                         }
                     },2000);

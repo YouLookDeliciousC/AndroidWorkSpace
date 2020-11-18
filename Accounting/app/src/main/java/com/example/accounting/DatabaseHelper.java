@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQuery;
+import android.provider.ContactsContract;
 
 import androidx.annotation.Nullable;
 
@@ -69,6 +71,60 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int columnIndex = cursor.getColumnIndex(COLUMN_1_1);
         String res="";
         while (cursor.moveToNext()){
+            res = cursor.getString(columnIndex);
+            break;
+        }
+        return res;
+    }
+    boolean hasSameNick(String nick){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM " + TABLE_NAME_1 + " WHERE NICKNAME = ?";
+        Cursor cursor = db.rawQuery(sql, new String[]{nick});
+        int columnIndex = cursor.getColumnIndex(COLUMN_1_3);
+        String res = "";
+        while(cursor.moveToNext()){
+            res = cursor.getString(columnIndex);
+            return res.equals(nick);
+        }
+        return false;
+    }
+
+    boolean hasSamePhone(String phone){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM " + TABLE_NAME_1 + " WHERE PHONE = ?";
+        Cursor cursor = db.rawQuery(sql, new String[]{phone});
+        int columnIndex = cursor.getColumnIndex(COLUMN_1_4);
+        String res = "";
+        while(cursor.moveToNext()){
+            res = cursor.getString(columnIndex);
+            return res.equals(phone);
+        }
+        return false;
+    }
+
+    boolean setNewNick(String id, String nick){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_1_3, nick);
+        int flag = db.update(TABLE_NAME_1,contentValues,"ID = ?",new String[]{id});
+        return flag != -1;
+    }
+
+    boolean setNewPhone(String id, String phone){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_1_4, phone);
+        int flag = db.update(TABLE_NAME_1,contentValues,"ID = ?",new String[]{id});
+        return flag != -1;
+    }
+
+    public String findPhone(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM " + TABLE_NAME_1 + " WHERE NICKNAME = ?";
+        Cursor cursor = db.rawQuery(sql,new String[]{username});
+        int columnIndex = cursor.getColumnIndex(COLUMN_1_4);
+        String res = "";
+        while(cursor.moveToNext()){
             res = cursor.getString(columnIndex);
             break;
         }
