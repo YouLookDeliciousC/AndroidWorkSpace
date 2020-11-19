@@ -23,14 +23,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_1_3 = "NICKNAME";
     public static final String COLUMN_1_4 = "PHONE";
     public static final String COLUMN_1_5 = "PASSWORD";
+    public static final String COLUMN_1_6 = "GENDER";
 
     public DatabaseHelper(@Nullable Context context){
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NAME_1 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, NICKNAME TEXT, PHONE INTEGER, PASSWORD TEXT)");
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NAME_1 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, NICKNAME TEXT, PHONE INTEGER, PASSWORD TEXT, GENDER TEXT)");
     }
 
     @Override
@@ -47,6 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_1_3,nickname);
         contentValues.put(COLUMN_1_4,phone);
         contentValues.put(COLUMN_1_5,password);
+        contentValues.put(COLUMN_1_6, "Secret");
         long res = db.insert(TABLE_NAME_1,null,contentValues);
         return res != -1;
     }
@@ -76,6 +78,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return res;
     }
+
+    String findGender(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM " + TABLE_NAME_1 + " WHERE ID = ?";
+        Cursor cursor = db.rawQuery(sql, new String[]{id});
+        int columnIndex = cursor.getColumnIndex(COLUMN_1_6);
+        String res = "";
+        while(cursor.moveToNext()){
+            res = cursor.getString(columnIndex);
+            break;
+        }
+        return res;
+    }
+
     boolean hasSameNick(String nick){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT * FROM " + TABLE_NAME_1 + " WHERE NICKNAME = ?";
@@ -115,6 +131,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_1_4, phone);
         int flag = db.update(TABLE_NAME_1,contentValues,"ID = ?",new String[]{id});
+        return flag != -1;
+    }
+
+    boolean setNewGender(String id, String gender){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_1_6, gender);
+        int flag = db.update(TABLE_NAME_1, contentValues, "ID = ?", new String[]{id});
         return flag != -1;
     }
 

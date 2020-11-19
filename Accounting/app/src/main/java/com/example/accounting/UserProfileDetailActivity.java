@@ -21,9 +21,11 @@ public class UserProfileDetailActivity extends AppCompatActivity {
     Button buttonLogout;
     LinearLayout layoutNickName;
     LinearLayout layoutPhone;
+    LinearLayout layoutGender;
     TextView textViewNick;
     TextView textViewPhone;
     TextView textViewId;
+    TextView textViewGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +35,73 @@ public class UserProfileDetailActivity extends AppCompatActivity {
         buttonLogout = findViewById(R.id.btnLogout);
         layoutNickName = findViewById(R.id.llUserProfileDetailNick);
         layoutPhone = findViewById(R.id.llUserProfileDetailPhone);
+        layoutGender = findViewById(R.id.llUserProfileDetailGender);
         textViewNick = findViewById(R.id.tvProfileDetailNick);
         textViewId = findViewById(R.id.tvProfileDetailId);
         textViewPhone = findViewById(R.id.tvProfileDetailPhone);
+        textViewGender = findViewById(R.id.tvProfileDetailGender);
 
         iniData();
 
         logout();
         modifyNickName();
         modifyPhone();
+        modifyGender();
+    }
+    int yourChoice;
+
+    private void modifyGender() {
+        final String[] items = { "Male","Female","Secret"};
+
+        layoutGender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int checkedNum = 0;
+                String checkedGender = textViewGender.getText().toString().trim();
+                //String[] gender = {"Male", "Female"};
+                for(String i : items){
+                    if(checkedGender.equals(i)){
+                        break;
+                    }
+                    checkedNum ++;
+                }
+
+                yourChoice = -1;
+                AlertDialog.Builder singleChoiceDialog =
+                        new AlertDialog.Builder(UserProfileDetailActivity.this);
+                singleChoiceDialog.setTitle("Your Gender");
+                // 第二个参数是默认选项，此处设置为0
+                singleChoiceDialog.setSingleChoiceItems(items, checkedNum,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                yourChoice = which;
+                            }
+                        });
+                singleChoiceDialog.setPositiveButton("确定",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                if (yourChoice != -1) {
+                                    boolean flag = db.setNewGender(MainActivity.GLOBAL_ID, items[yourChoice]);
+                                    if(!flag){
+                                        showMessage("Error", "Fail to set gender");
+                                        return;
+                                    }
+                                    textViewGender.setText(items[yourChoice]);
+                                    Toast.makeText(UserProfileDetailActivity.this,
+                                            "你选择了" + items[yourChoice],
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                singleChoiceDialog.show();
+            }
+        });
+
+
+
     }
 
     private void modifyPhone() {
@@ -83,6 +143,7 @@ public class UserProfileDetailActivity extends AppCompatActivity {
         textViewNick.setText(MainActivity.GLOBAL_USERNAME);
         textViewPhone.setText(MainActivity.GLOBAL_PHONE);
         textViewId.setText(MainActivity.GLOBAL_ID);
+        textViewGender.setText(db.findGender(MainActivity.GLOBAL_ID));
 
     }
 
@@ -147,4 +208,6 @@ public class UserProfileDetailActivity extends AppCompatActivity {
         builder.setMessage(buffer);
         builder.show();
     }
+
+
 }
