@@ -26,8 +26,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Avatar"
-                    android:textSize="30dp"
-                    android:layout_marginTop="5dp"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="10dp"/>
             </LinearLayout>
             <LinearLayout
@@ -40,12 +40,13 @@
                     android:layout_height="60dp"
                     android:src="@drawable/avatar1"
                     android:layout_marginRight="10dp"/>
+
                 <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_marginTop="17dp"
                     android:layout_marginRight="10dp"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/right_point_2"/>
+                    android:src="@drawable/right_point_2" />
 
 
 
@@ -74,8 +75,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="ID"
-                    android:textSize="30dp"
-                    android:layout_marginTop="5dp"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="10dp"/>
             </LinearLayout>
             <LinearLayout
@@ -87,8 +88,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="123456"
-                    android:textSize="30dp"
-                    android:layout_marginTop="10dp"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"/>
 
 
@@ -115,8 +116,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Nick Name"
-                    android:textSize="30dp"
-                    android:layout_marginTop="5dp"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="10dp"/>
             </LinearLayout>
             <LinearLayout
@@ -128,14 +129,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Bob"
-                    android:textSize="30dp"
-                    android:layout_marginTop="10dp"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"/>
                 <ImageView
                     android:layout_marginTop="17dp"
                     android:layout_marginRight="10dp"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/right_point_2"/>
 
             </LinearLayout>
@@ -159,9 +160,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="15dp"
                     android:text="Gender"
-                    android:textSize="30dp" />
+                    android:textSize="20dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -172,14 +173,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Male"
-                    android:textSize="30dp"
-                    android:layout_marginTop="10dp"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"/>
                 <ImageView
                     android:layout_marginTop="17dp"
                     android:layout_marginRight="10dp"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/right_point_2"/>
 
             </LinearLayout>
@@ -202,8 +203,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Phone No."
-                    android:textSize="30dp"
-                    android:layout_marginTop="5dp"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="10dp"/>
             </LinearLayout>
             <LinearLayout
@@ -215,14 +216,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="0172331061"
-                    android:textSize="30dp"
-                    android:layout_marginTop="10dp"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"/>
                 <ImageView
                     android:layout_marginTop="17dp"
                     android:layout_marginRight="10dp"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/right_point_2"/>
 
             </LinearLayout>
@@ -233,10 +234,10 @@
         <Button
             android:id="@+id/btnLogout"
             android:background="#FAFAFA"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
             android:text="Logout"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:layout_marginTop="30dp"
             android:layout_below="@id/llUserProfileDetailPhone"
             android:layout_centerHorizontal="true"/>

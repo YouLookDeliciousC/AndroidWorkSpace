@@ -79,6 +79,8 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     },2000);
 
+                    finish();
+
                 }else{
                     Toast.makeText(getApplicationContext(),"Register Error!",Toast.LENGTH_LONG).show();
                 }

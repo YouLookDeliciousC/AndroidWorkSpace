@@ -20,7 +20,7 @@
             android:inputType="textPersonName"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
-            android:width="300dp"
+            android:width="200dp"
             android:textSize="18sp"/>
 
         <EditText
@@ -32,8 +32,8 @@
             android:inputType="textPersonName"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/etRegisterName"
-            android:layout_marginTop="30dp"
-            android:width="300dp"
+            android:layout_marginTop="15dp"
+            android:width="200dp"
 
             />
 
@@ -48,8 +48,8 @@
             android:inputType="textPersonName"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/etRegisterNick"
-            android:layout_marginTop="30dp"
-            android:width="300dp" />
+            android:layout_marginTop="15dp"
+            android:width="200dp" />
 
         <EditText
             android:id="@+id/etRegisterPassword"
@@ -62,8 +62,8 @@
             tools:layout_editor_absoluteY="366dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/etRegisterPhone"
-            android:layout_marginTop="30dp"
-            android:width="300dp"/>
+            android:layout_marginTop="15dp"
+            android:width="200dp"/>
 
         <EditText
             android:id="@+id/etRegisterCPassword"
@@ -74,8 +74,8 @@
             android:inputType="textPassword"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/etRegisterPassword"
-            android:layout_marginTop="30dp"
-            android:width="300dp" />
+            android:layout_marginTop="15dp"
+            android:width="200dp" />
 
         <Button
             android:id="@+id/btnRegister"
@@ -85,7 +85,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/etRegisterCPassword"
             android:layout_marginTop="30dp"
-            android:width="300dp"/>
+            android:width="200dp"/>
 
     </RelativeLayout>
 

@@ -17,7 +17,7 @@
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:src="@drawable/avatar1"
+        android:src="@drawable/welcome_image"
         />
     <EditText
         android:id="@+id/etLoginUName"
@@ -29,7 +29,7 @@
         android:layout_below="@+id/ivLoginAvatar"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-        android:width="300dp"/>
+        android:width="200dp"/>
 
     <EditText
         android:id="@+id/etLoginPassword"
@@ -37,20 +37,20 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/etLoginUName"
         android:layout_centerInParent="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:width="300dp"
+        android:width="200dp"
         />
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="300dp"
+        android:layout_width="200dp"
         android:layout_height="48dp"
         android:text="Login"
         android:textSize="18sp"
         android:layout_below="@+id/etLoginPassword"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         />
 
@@ -83,7 +83,7 @@
         android:layout_below="@+id/btnLogin"
         android:layout_marginTop="3dp"
         android:textSize="13sp"
-        android:layout_marginLeft="60dp"
+        android:layout_alignStart="@+id/btnLogin"
          />
 
     <TextView
@@ -94,7 +94,8 @@
         android:layout_below="@+id/btnLogin"
         android:layout_marginTop="3dp"
         android:textSize="13sp"
-        android:layout_marginLeft="300dp"
+
+        android:layout_alignEnd="@+id/btnLogin"
 
         />
 

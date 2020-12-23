@@ -16,6 +16,7 @@ public class UserProfileActivity extends AppCompatActivity {
     LinearLayout linearLayoutTop;
     TextView textViewUserName;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +25,9 @@ public class UserProfileActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
         linearLayoutTop = findViewById(R.id.llUserProfile1);
         textViewUserName = findViewById(R.id.tvProfileUserName);
-
         textViewUserName.setText(MainActivity.GLOBAL_USERNAME);
+
+
         EnterUserProfileDetail();
 
 

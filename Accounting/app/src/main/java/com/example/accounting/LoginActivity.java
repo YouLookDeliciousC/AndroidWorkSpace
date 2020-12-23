@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent i = new Intent(LoginActivity.this,UserProfileActivity.class);
+                            Intent i = new Intent(LoginActivity.this,HomeActivity.class);
                             startActivity(i);
                             MainActivity.GLOBAL_USERNAME=userName; // Set global variables
                             MainActivity.GLOBAL_PASSWORD=password;

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     tools:context=".UserProfileActivity">
 
-    <LinearLayout
+    <!--<LinearLayout
         android:id="@+id/llUserProfileGlobal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -85,6 +85,6 @@
 
 
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 </ScrollView>

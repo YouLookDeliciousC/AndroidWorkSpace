@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <item
+        android:id="@+id/nav_detail"
+        android:icon="@drawable/ic_featured_play_list_black_24dp"
+        android:enabled="true"
+        android:title="Detail"/>
+
+    <item
+        android:id="@+id/nav_chart"
+        android:icon="@drawable/ic_pie_chart_black_24dp"
+        android:enabled="true"
+        android:title="Chart"/>
+
+
+    <item
+        android:id="@+id/nav_Log"
+        android:icon="@drawable/ic_add_circle_outline_black_24dp"
+        android:enabled="true"
+        android:title="Log"/>
+    <item
+        android:id="@+id/nav_Note"
+        android:icon="@drawable/ic_add_alert_black_24dp"
+        android:enabled="true"
+        android:title="Notification"/>
+
+    <item
+        android:id="@+id/nav_Profile"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:enabled="true"
+        android:title="Profile"/>
+
+
+</menu>

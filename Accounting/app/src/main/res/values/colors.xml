@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#FF3558</color>
+    <color name="colorPrimaryDark">#E20B0B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="basicColorDark">#FFFFDA44</color>
+    <color name="tryColor">#03A9F4</color>
+
+    <!--Bottom Nav Color-->
+    <color name="colorSelected">#F44336</color>
+    <color name="colorUnselected">#FF9800</color>
+
+    <!--Background Color-->
+    <color name="backgroundGlobal">#F2F2F2</color>
+    <color name="backgroundCard">#FFFFFF</color>
+
+    <!--Text Color-->
+    <color name="blackText">#000000</color>
+
 </resources>

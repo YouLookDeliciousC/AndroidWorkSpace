@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:columnCount="3"
+            android:rowCount="10">
+            <ImageView
+                android:id="@+id/iconSalary"
+                android:src="@drawable/iconsalary"
+                android:layout_columnWeight="1"
+                android:paddingVertical="20dp"
+                android:backgroundTint="@color/icon_selector"
+                android:clickable="true"
+                android:tag="Salary"
+
+                />
+            <ImageView
+                android:id="@+id/iconParttime"
+                android:src="@drawable/iconparttime"
+                android:layout_columnWeight="1"
+                android:paddingVertical="20dp"
+                android:tag="Part time job"
+
+                />
+            <ImageView
+                android:id="@+id/iconInvest"
+                android:src="@drawable/iconinvest"
+                android:layout_columnWeight="1"
+                android:paddingVertical="20dp"
+                android:tag="Investment"
+
+                />
+            <ImageView
+                android:id="@+id/iconReward"
+                android:src="@drawable/iconreward"
+                android:layout_columnWeight="1"
+                android:paddingVertical="20dp"
+                android:tag="Reward"
+                />
+
+
+        </GridLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom">
+
+                <Button
+                    android:id="@+id/getDate"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:text="Date"
+                    android:layout_marginLeft="10dp"
+                    />
+
+                <EditText
+                    android:id="@+id/getAmount"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:hint="Amount"
+                    android:layout_marginLeft="10dp"/>
+                <Button
+                    android:id="@+id/btnIncomeConfirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Confirm"
+                    android:layout_marginHorizontal="10dp"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
