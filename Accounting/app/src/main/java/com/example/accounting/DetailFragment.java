@@ -36,12 +36,12 @@ import java.util.Map;
 public class DetailFragment extends Fragment {
 
     DatabaseHelper db;
-    List<Item> itemList;
-    List<ItemDate> itemDateList;
-    List<ItemAmount> itemAmountList;
+    List<String> itemList;
+    List<String> itemDateList;
+    List<String> itemAmountList;
     ListView lvItems;
-    ListView lvItemDate;
-    ListView lvItemAmount;
+/*    ListView lvItemDate;
+    ListView lvItemAmount;*/
 
     Button btnMonthPicker;
 
@@ -61,8 +61,8 @@ public class DetailFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         lvItems = getActivity().findViewById(R.id.lvDetailShowItem);
-        lvItemDate = getActivity().findViewById(R.id.lvDetailShowDate);
-        lvItemAmount = getActivity().findViewById(R.id.lvDetailShowAmount);
+/*        lvItemDate = getActivity().findViewById(R.id.lvDetailShowDate);
+        lvItemAmount = getActivity().findViewById(R.id.lvDetailShowAmount);*/
         btnMonthPicker = getActivity().findViewById(R.id.btnMonthSelect);
 
         tvYear = getActivity().findViewById(R.id.tvYearShow);
@@ -207,18 +207,24 @@ public class DetailFragment extends Fragment {
         for(String item : eachItem){
             tempp = item.split("杰");
             /*System.out.println("second step  " + temp.length);*/
-            itemList.add(new Item(tempp[0]));
-            itemDateList.add(new ItemDate(tempp[1]));
-            itemAmountList.add(new ItemAmount(tempp[2]));
+            itemList.add(tempp[0]);
+            itemDateList.add(tempp[1]);
+            itemAmountList.add(tempp[2]);
         }
 
-        ArrayAdapter<Item> arrayAdapterItem = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1, itemList);
-        ArrayAdapter<ItemDate> arrayAdapterDate = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,itemDateList);
-        ArrayAdapter<ItemAmount> arrayAdapterAmount = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,itemAmountList);
-        lvItems.setAdapter(arrayAdapterItem);
-        lvItemDate.setAdapter(arrayAdapterDate);
-        lvItemAmount.setAdapter(arrayAdapterAmount);
+        String[] itemArray = itemList.toArray(new String[itemList.size()]);
+        String[] dateArray = itemDateList.toArray(new String[itemDateList.size()]);
+        String[] amountArray = itemAmountList.toArray(new String[itemAmountList.size()]);
+        Integer[] imgIDArray = new Integer[itemArray.length];
+        for(int i = 0; i < itemArray.length; ++ i){
+            imgIDArray[i] = imgStrToID(itemArray[i]);
+        }
 
+
+
+        CustomListAdapter adapter = new CustomListAdapter(getActivity(), itemArray, dateArray, amountArray, imgIDArray);
+
+        lvItems.setAdapter(adapter);
     }
 
     private String convertDigToStr(String dig){
@@ -256,6 +262,21 @@ public class DetailFragment extends Fragment {
         strToDig.put("Dec","12");
         return strToDig.get(str);
     }
+    private Integer imgStrToID(String str){
+        final Map<String,Integer> strToDig = new HashMap<>();
+
+        strToDig.put("Food",R.drawable.food);
+        strToDig.put("Beverage",R.drawable.beverage);
+        strToDig.put("Shopping",R.drawable.shopping);
+        strToDig.put("Bus",R.drawable.bus);
+        strToDig.put("Salary",R.drawable.iconsalary);
+        strToDig.put("Part time job",R.drawable.iconparttime);
+        strToDig.put("Investment",R.drawable.iconinvest);
+        strToDig.put("Reward",R.drawable.iconreward);
+
+        return strToDig.get(str);
+    }
+
 
 
 

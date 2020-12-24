@@ -304,7 +304,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
 
-                            android:text="5000"
+                            android:text="0"
                             android:textSize="20dp"
                             android:layout_weight="1"
                             android:textColor="@color/blackText"/>
@@ -312,7 +312,7 @@
                             android:id="@+id/tvProfileExpense"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="2000"
+                            android:text="0"
                             android:textSize="20dp"
                             android:layout_weight="1"
                             android:textColor="@color/blackText"/>
@@ -322,7 +322,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="3000"
+                            android:text="0"
                             android:textColor="@color/blackText"
                             android:textSize="20dp" />
 
@@ -381,7 +381,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
                     android:indeterminate="false"
-                    android:progress="30"
+                    android:progress="100"
                     android:progressDrawable="@drawable/circleprogressbar" />
 
                 <LinearLayout
@@ -409,7 +409,7 @@
                                 android:id="@+id/tvProfileRBudget"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="500"
+                                android:text="0"
                                 android:textSize="20dp"
                                 android:textColor="@color/blackText"/>
                         </LinearLayout>
@@ -433,7 +433,7 @@
                                 android:id="@+id/tvProfileMBudget"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="600"
+                                android:text="0"
                                 android:textSize="15dp"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -455,7 +455,7 @@
                                 android:id="@+id/tvProfileMExpense"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="100"
+                                android:text="0"
                                 android:textSize="15dp"/>
                         </LinearLayout>
                     </LinearLayout>

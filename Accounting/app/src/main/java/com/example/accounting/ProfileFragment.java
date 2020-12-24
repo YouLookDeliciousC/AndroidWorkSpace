@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -112,6 +113,14 @@ public class ProfileFragment extends Fragment {
         setBudget();
         attendanceFun();
 
+        String longSen = db.getAttendance(MainActivity.GLOBAL_ID);
+        if(longSen.isEmpty()){
+            return;
+        }
+        String[] roughData = longSen.split("鑫");
+        tvContAtt.setText(roughData[0] + " Days");
+        tvOverallAtt.setText(roughData[1] + " Days");
+
 
 
 
@@ -138,10 +147,30 @@ public class ProfileFragment extends Fragment {
         llClickAtt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String longSen = db.getAttendance(MainActivity.GLOBAL_ID);
+                if(longSen.isEmpty()){
+                    return;
+                }
+                String[] roughData = longSen.split("鑫");
 
-
-                tvContAtt.setText("1 Days");
-                tvOverallAtt.setText("1 Days");
+                Calendar calendar = Calendar.getInstance();
+                Date today = calendar.getTime();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+                String result = format.format(today);
+                if(roughData[2].equals(result)){
+                    showMessage("Double Attendance", "You already signed attendance today...");
+                    return;
+                }
+                int con = Integer.parseInt(roughData[0]) + 1;
+                int overall = Integer.parseInt(roughData[1]) + 1;
+                String input = con + "鑫" + overall + "鑫" + result;
+                boolean flag = db.setAttendance(MainActivity.GLOBAL_ID,input);
+                if(!flag){
+                    showMessage("Attendance Error", "Something Wrong");
+                    return;
+                }
+                tvContAtt.setText(con + " Days");
+                tvOverallAtt.setText(overall + " Days");
 
                 showMessage("Attendance Success", "You have kept keeping accounts for 1 consecutive days! Keep Going!!");
             }

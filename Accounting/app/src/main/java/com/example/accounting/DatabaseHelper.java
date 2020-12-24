@@ -26,14 +26,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_1_6 = "GENDER";
     public static final String COLUMN_1_7 = "ITEMS";
     public static final String COLUMN_1_8 = "BUDGET";
+    public static final String COLUMN_1_9 = "ATTENDANCE";
 
     public DatabaseHelper(@Nullable Context context){
-        super(context, DATABASE_NAME, null, 5);
+        super(context, DATABASE_NAME, null, 6);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NAME_1 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, NICKNAME TEXT, PHONE INTEGER, PASSWORD TEXT, GENDER TEXT, ITEMS TEXT, BUDGET TEXT)");
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NAME_1 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, NICKNAME TEXT, PHONE INTEGER, PASSWORD TEXT, GENDER TEXT, ITEMS TEXT, BUDGET TEXT, ATTENDANCE TEXT)");
     }
 
     @Override
@@ -53,9 +54,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_1_6, "Secret");
         contentValues.put(COLUMN_1_7, "");
         contentValues.put(COLUMN_1_8, "0");
+        contentValues.put(COLUMN_1_9, "0鑫0鑫2020/01/05");
         long res = db.insert(TABLE_NAME_1,null,contentValues);
         return res != -1;
     }
+    public String getAttendance(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM " + TABLE_NAME_1 + " WHERE ID = ?";
+        Cursor cursor = db.rawQuery(sql,new String[]{id});
+        int columnIndex = cursor.getColumnIndex(COLUMN_1_9);
+        String res="";
+        while (cursor.moveToNext()){
+            res = cursor.getString(columnIndex);
+            break;
+        }
+        return res;
+    }
+
+    public boolean setAttendance(String id, String attendance){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_1_9, attendance);
+        int flag = db.update(TABLE_NAME_1, contentValues, "ID = ?", new String[]{id});
+        return flag != -1;
+    }
+
+
     public String getBudget(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT * FROM " + TABLE_NAME_1 + " WHERE ID = ?";

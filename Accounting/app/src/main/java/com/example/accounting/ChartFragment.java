@@ -45,7 +45,7 @@ public class ChartFragment extends Fragment {
     LineChartView lineChartView;
     String[] axisData = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept",
             "Oct", "Nov", "Dec"};
-    int[] yAxisData = {50, 20, 15, 30, 20, 60, 15, 40, 45, 10, 90, 18};
+    int[] yAxisData = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     @Nullable
     @Override
@@ -237,12 +237,13 @@ public class ChartFragment extends Fragment {
         }
 
 
-        axisData = newList;
+
 
         String longSen = db.getItems(MainActivity.GLOBAL_ID);
         if(longSen.isEmpty()){
             return;
         }
+        axisData = newList;
         String[] roughData = longSen.split("鑫");
         int lengthOfRough = roughData.length;
         String min = originPast[6];
@@ -316,13 +317,13 @@ public class ChartFragment extends Fragment {
     public  List<String> getMonthFullDay(int year , int month){
         SimpleDateFormat dateFormatYYYYMMDD = new SimpleDateFormat("yyyy/MM/dd");
         List<String> fullDayList = new ArrayList<>();
-        // 获得当前日期对象
+
         Calendar cal = Calendar.getInstance();
-        cal.clear();// 清除信息
+        cal.clear();
         cal.set(Calendar.YEAR, year);
-        // 1月从0开始
+
         cal.set(Calendar.MONTH, month-1 );
-        // 当月1号
+
         cal.set(Calendar.DAY_OF_MONTH,1);
         int count = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         for (int j = 1; j <= count ; j++) {
