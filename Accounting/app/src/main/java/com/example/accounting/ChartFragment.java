@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,12 +26,11 @@ import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.view.LineChartView;
 
 import lecho.lib.hellocharts.model.Axis;
-import lecho.lib.hellocharts.model.AxisValue;
-import lecho.lib.hellocharts.model.Line;
+
 import lecho.lib.hellocharts.model.LineChartData;
-import lecho.lib.hellocharts.model.PointValue;
+
 import lecho.lib.hellocharts.model.Viewport;
-import lecho.lib.hellocharts.view.LineChartView;
+
 
 /* *
  *Author: Goat Chen
@@ -38,6 +38,9 @@ import lecho.lib.hellocharts.view.LineChartView;
 
 public class ChartFragment extends Fragment {
     DatabaseHelper db;
+    Button btnWeek;
+    Button btnMonth;
+    Button btnYear;
 
     LineChartView lineChartView;
     String[] axisData = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept",
@@ -55,10 +58,30 @@ public class ChartFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         db = new DatabaseHelper(getContext());
+        btnWeek = getActivity().findViewById(R.id.btnBalWeek);
+        btnMonth = getActivity().findViewById(R.id.btnBalMonth);
+        btnYear = getActivity().findViewById(R.id.btnBalYear);
+
+
+        pressWeek();
         weeklyChart();
         monthlyChart();
         yearlyChart();
+        showChart();
 
+
+    }
+
+    private void pressWeek() {
+        btnWeek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                weeklyChart();
+            }
+        });
+    }
+
+    private void showChart() {
         lineChartView = getActivity().findViewById(R.id.lineChart);
 
         List yAxisValues = new ArrayList();
@@ -88,7 +111,7 @@ public class ChartFragment extends Fragment {
         data.setAxisXBottom(axis);
 
         Axis yAxis = new Axis();
-        yAxis.setName("Sales in millions");
+        yAxis.setName("Amount of Money");
         yAxis.setTextColor(Color.parseColor("#F44336"));
         yAxis.setTextSize(16);
         data.setAxisYLeft(yAxis);
@@ -101,10 +124,92 @@ public class ChartFragment extends Fragment {
     }
 
     private void yearlyChart() {
+        btnYear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String[] x = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept",
+                        "Oct", "Nov", "Dec"};
+                Calendar calendar = Calendar.getInstance();
+                Date today = calendar.getTime();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+                String result = format.format(today);
+                String[] resultEle = result.split("/");
+                String year = resultEle[0];
+
+                String[] xTemp = {"01","02","03","04","05","06","07","08","09","10","11","12"};
+                int[] y = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+                String longSen = db.getItems(MainActivity.GLOBAL_ID);
+                if(longSen.isEmpty()){
+                    return;
+                }
+                String[] eachItem = longSen.split("鑫");
+                for(String item : eachItem){
+                    String[] temp = item.split("杰");
+                    String[] nowTemp = temp[1].split("/");
+
+                    if(nowTemp[0].equals(year)){
+                        for(int i = 0; i < 12; ++ i){
+                            if(nowTemp[1].equals(xTemp[i])){
+                                y[i] += Integer.parseInt(temp[2]);
+                            }
+                        }
+
+                    }
+                }
+
+                axisData= x;
+                yAxisData = y;
+                showChart();
+            }
+        });
 
     }
 
     private void monthlyChart() {
+        btnMonth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<String> daysOfMonth;
+                Calendar calendar = Calendar.getInstance();
+                Date today = calendar.getTime();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+                String result = format.format(today);
+                String[] resultEle = result.split("/");
+                String month = resultEle[1];
+                String year = resultEle[0];
+                daysOfMonth = getMonthFullDay(Integer.parseInt(resultEle[0]),Integer.parseInt(resultEle[1]));
+                String[] daysEle = daysOfMonth.toArray(new String[daysOfMonth.size()]);
+                int[] daysInt = new int[daysEle.length];
+                String[] daysStr = new String[daysEle.length];
+                for(int i = 0; i < daysEle.length; i++){
+                    daysInt[i] = Integer.parseInt(daysEle[i].split("/")[2]);
+                }
+                for(int i = 0; i < daysInt.length; ++ i){
+                    daysStr[i] = String.valueOf(daysInt[i]);
+                }
+
+                int[] y = new int[daysInt.length];
+                for(int i = 0; i < daysInt.length; i ++){
+                    y[i] = 0;
+                }
+                String longSen = db.getItems(MainActivity.GLOBAL_ID);
+                if(longSen.isEmpty()){
+                    return;
+                }
+                String[] eachItem = longSen.split("鑫");
+                for(String item : eachItem){
+                    String[] temp = item.split("杰");
+                    String[] nowTemp = temp[1].split("/");
+                    if(nowTemp[0].equals(year) && nowTemp[1].equals(month)){
+                        y[Integer.parseInt(nowTemp[2])-1] += Integer.parseInt(temp[2]);
+                    }
+                }
+                axisData = daysStr;
+                yAxisData = y;
+                showChart();
+            }
+        });
 
     }
 
@@ -196,9 +301,10 @@ public class ChartFragment extends Fragment {
             data[i] = xy.get(originPast[i]);
         }
         yAxisData = data;
+        showChart();
     }
 
-    private static String getPastDate(int past) {
+    private  String getPastDate(int past) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) - past);
         Date today = calendar.getTime();
@@ -206,5 +312,23 @@ public class ChartFragment extends Fragment {
         String result = format.format(today);
         /*Log.e(null, result);*/
         return result;
+    }
+    public  List<String> getMonthFullDay(int year , int month){
+        SimpleDateFormat dateFormatYYYYMMDD = new SimpleDateFormat("yyyy/MM/dd");
+        List<String> fullDayList = new ArrayList<>();
+        // 获得当前日期对象
+        Calendar cal = Calendar.getInstance();
+        cal.clear();// 清除信息
+        cal.set(Calendar.YEAR, year);
+        // 1月从0开始
+        cal.set(Calendar.MONTH, month-1 );
+        // 当月1号
+        cal.set(Calendar.DAY_OF_MONTH,1);
+        int count = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        for (int j = 1; j <= count ; j++) {
+            fullDayList.add(dateFormatYYYYMMDD.format(cal.getTime()));
+            cal.add(Calendar.DAY_OF_MONTH,1);
+        }
+        return fullDayList;
     }
 }

@@ -2,6 +2,8 @@ package com.example.accounting;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import java.text.ParseException;
@@ -25,6 +29,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import static android.Manifest.permission.CALL_PHONE;
 
 
 /* *
@@ -47,8 +53,17 @@ public class ProfileFragment extends Fragment {
     TextView tvRBudget;
     TextView tvTitle;
 
-    Button btnSetBudget;
+    LinearLayout llClickAtt;
+    TextView tvContAtt;
+    TextView tvOverallAtt;
 
+    LinearLayout llContact;
+
+    Button btnSetBudget;
+    ProgressBar circleBar;
+
+
+    public static String OFFICE_PHONE = "0172331061";
 
     @Nullable
     @Override
@@ -74,15 +89,63 @@ public class ProfileFragment extends Fragment {
         tvRBudget = getActivity().findViewById(R.id.tvProfileRBudget);
         tvTitle = getActivity().findViewById(R.id.tvProfileTitle);
 
+        llClickAtt = getActivity().findViewById(R.id.llckAttendance);
+        tvContAtt = getActivity().findViewById(R.id.tvContinuousAtt);
+        tvOverallAtt = getActivity().findViewById(R.id.tvOverallAtt);
+
+        llContact = getActivity().findViewById(R.id.llUserProfileContact);
+
+        circleBar = getActivity().findViewById(R.id.progressBar);
+
         btnSetBudget = getActivity().findViewById(R.id.btnSetBudget);
 
         tvMBudget.setText(db.getBudget(MainActivity.GLOBAL_ID));
 
+        circleBar.setMax(100);
+        circleBar.setIndeterminate(false);
+
+
         EnterUserProfileDetail();
+
+        contactUs();
         showBill();
         setBudget();
+        attendanceFun();
 
 
+
+
+    }
+
+    private void contactUs() {
+        llContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(Intent.ACTION_CALL);
+                i.setData(Uri.parse("tel:" + OFFICE_PHONE));
+                // check permission
+                if(ContextCompat.checkSelfPermission(getContext(),CALL_PHONE)== PackageManager.PERMISSION_GRANTED){
+                    startActivity(i);
+                }else{
+                    requestPermissions(new String[]{CALL_PHONE},1);
+                }
+            }
+        });
+    }
+
+    private void attendanceFun() {
+        llClickAtt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                tvContAtt.setText("1 Days");
+                tvOverallAtt.setText("1 Days");
+
+                showMessage("Attendance Success", "You have kept keeping accounts for 1 consecutive days! Keep Going!!");
+            }
+        });
     }
 
     private void setBudget() {
@@ -108,6 +171,7 @@ public class ProfileFragment extends Fragment {
                                     showMessage("Error","Fail to set new budget");
                                 }
                                 tvMBudget.setText(newBudget);
+                                showBill();
                                 Toast.makeText(getContext(), "You got new budget!", Toast.LENGTH_LONG).show();
 
                             }
@@ -172,6 +236,10 @@ public class ProfileFragment extends Fragment {
         String ex = tvExpense.getText().toString().trim();
         int rb = Integer.parseInt(mb) + Integer.parseInt(ex);
         tvRBudget.setText(String.valueOf(rb));
+        Double progress = rb / Double.parseDouble(mb) * 100;
+
+        circleBar.setProgress(progress.intValue());
+
 
     }
 

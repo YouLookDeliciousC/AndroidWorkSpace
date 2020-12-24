@@ -47,6 +47,7 @@
                 android:layout_marginBottom="15dp"
                 >
                 <Button
+                    android:id="@+id/btnBalWeek"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Weekly"
@@ -55,6 +56,7 @@
                     android:textSize="15dp"
                     />
                 <Button
+                    android:id="@+id/btnBalMonth"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Monthly"
@@ -62,7 +64,7 @@
                     android:textColor="@color/blackText"
                     android:textSize="15dp"/>
                 <Button
-
+                    android:id="@+id/btnBalYear"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Yearly"
