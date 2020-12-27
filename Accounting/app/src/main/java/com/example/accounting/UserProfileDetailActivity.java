@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,9 +21,11 @@ public class UserProfileDetailActivity extends AppCompatActivity {
 
     DatabaseHelper db;
     Button buttonLogout;
+    LinearLayout layoutAvatar;
     LinearLayout layoutNickName;
     LinearLayout layoutPhone;
     LinearLayout layoutGender;
+    ImageView imgAvatar;
     TextView textViewNick;
     TextView textViewPhone;
     TextView textViewId;
@@ -36,6 +40,8 @@ public class UserProfileDetailActivity extends AppCompatActivity {
         layoutNickName = findViewById(R.id.llUserProfileDetailNick);
         layoutPhone = findViewById(R.id.llUserProfileDetailPhone);
         layoutGender = findViewById(R.id.llUserProfileDetailGender);
+        layoutAvatar = findViewById(R.id.llUserProfileDetailAvatar);
+        imgAvatar = findViewById(R.id.imgProfileDetailAvatar);
         textViewNick = findViewById(R.id.tvProfileDetailNick);
         textViewId = findViewById(R.id.tvProfileDetailId);
         textViewPhone = findViewById(R.id.tvProfileDetailPhone);
@@ -44,10 +50,23 @@ public class UserProfileDetailActivity extends AppCompatActivity {
         iniData();
 
         logout();
+        modifyAvatar();
         modifyNickName();
         modifyPhone();
         modifyGender();
     }
+
+    private void modifyAvatar() {
+        layoutAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(UserProfileDetailActivity.this, AvatarActivity.class);
+                startActivity(i);
+
+            }
+        });
+    }
+
     int yourChoice;
 
     private void modifyGender() {
@@ -140,6 +159,7 @@ public class UserProfileDetailActivity extends AppCompatActivity {
     }
 
     private void iniData() {
+        imgAvatar.setImageResource(AvatarActivity.convertAvatar(MainActivity.GLOBAL_AVATAR));
         textViewNick.setText(MainActivity.GLOBAL_USERNAME);
         textViewPhone.setText(MainActivity.GLOBAL_PHONE);
         textViewId.setText(MainActivity.GLOBAL_ID);

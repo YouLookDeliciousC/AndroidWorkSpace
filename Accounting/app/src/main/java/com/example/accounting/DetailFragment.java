@@ -6,6 +6,7 @@ import android.security.keystore.StrongBoxUnavailableException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -61,8 +62,6 @@ public class DetailFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         lvItems = getActivity().findViewById(R.id.lvDetailShowItem);
-/*        lvItemDate = getActivity().findViewById(R.id.lvDetailShowDate);
-        lvItemAmount = getActivity().findViewById(R.id.lvDetailShowAmount);*/
         btnMonthPicker = getActivity().findViewById(R.id.btnMonthSelect);
 
         tvYear = getActivity().findViewById(R.id.tvYearShow);
@@ -87,8 +86,24 @@ public class DetailFragment extends Fragment {
 
 
         showItems();
+        deleteItems();
         chooseMonth();
 
+    }
+
+    private void deleteItems() {
+        lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                Toast.makeText(getContext(),"You long click " + i + " this items", Toast.LENGTH_LONG).show();
+
+
+
+                return false;
+            }
+        });
     }
 
     private void chooseMonth() {

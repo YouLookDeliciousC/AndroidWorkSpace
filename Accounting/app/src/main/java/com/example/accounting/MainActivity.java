@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     public static String GLOBAL_PASSWORD = "";
     public static String GLOBAL_PHONE = "";
     public static String GLOBAL_REALNAME = "";
+    public static String GLOBAL_AVATAR ="";
 
     int loading_time = 1000;
 

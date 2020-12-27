@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,6 +55,7 @@ public class ProfileFragment extends Fragment {
     TextView tvMExpense;
     TextView tvRBudget;
     TextView tvTitle;
+    ImageView imgAvatar;
 
     LinearLayout llClickAtt;
     TextView tvContAtt;
@@ -84,6 +87,7 @@ public class ProfileFragment extends Fragment {
         tvIncome = getActivity().findViewById(R.id.tvProfileIncome);
         tvExpense = getActivity().findViewById(R.id.tvProfileExpense);
         tvBalance = getActivity().findViewById(R.id.tvProfileBalance);
+        imgAvatar = getActivity().findViewById(R.id.ivProfileAvatar);
 
         tvMBudget = getActivity().findViewById(R.id.tvProfileMBudget);
         tvMExpense = getActivity().findViewById(R.id.tvProfileMExpense);
@@ -104,6 +108,8 @@ public class ProfileFragment extends Fragment {
 
         circleBar.setMax(100);
         circleBar.setIndeterminate(false);
+        imgAvatar.setImageResource(AvatarActivity.convertAvatar(MainActivity.GLOBAL_AVATAR));
+
 
 
         EnterUserProfileDetail();
@@ -161,7 +167,22 @@ public class ProfileFragment extends Fragment {
                     showMessage("Double Attendance", "You already signed attendance today...");
                     return;
                 }
-                int con = Integer.parseInt(roughData[0]) + 1;
+                Calendar calendarY = new GregorianCalendar();
+
+                calendarY.setTime(new Date());
+
+                calendarY.add(calendarY.DATE,-1);
+
+                String yesterday= format.format(calendarY.getTime());
+
+                /*System.out.println(date2);*/
+
+                int con;
+                if(yesterday.equals(roughData[2])){
+                  con = Integer.parseInt(roughData[0]) + 1;
+                } else{
+                    con = 1;
+                }
                 int overall = Integer.parseInt(roughData[1]) + 1;
                 String input = con + "鑫" + overall + "鑫" + result;
                 boolean flag = db.setAttendance(MainActivity.GLOBAL_ID,input);

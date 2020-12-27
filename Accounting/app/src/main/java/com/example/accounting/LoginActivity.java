@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                             MainActivity.GLOBAL_PASSWORD=password;
                             MainActivity.GLOBAL_ID=db.findId(userName);
                             MainActivity.GLOBAL_PHONE = db.findPhone(userName);
+                            MainActivity.GLOBAL_AVATAR = db.getAvatar(MainActivity.GLOBAL_ID);
                             finish();
 
                         }
@@ -87,8 +88,6 @@ public class LoginActivity extends AppCompatActivity {
                     String buffer = "Error: wrong username or/and password";
                     showMessage("Error", buffer);
                 }
-
-
             }
         });
 

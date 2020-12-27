@@ -3,15 +3,16 @@
     package="com.example.accounting">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
-        <activity android:name=".NewLogActivity"></activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".AvatarActivity"></activity>
+        <activity android:name=".NewLogActivity" />
         <activity android:name=".LogActivity" />
         <activity android:name=".DetailFragment" />
         <activity android:name=".UserProfileDetailActivity" />

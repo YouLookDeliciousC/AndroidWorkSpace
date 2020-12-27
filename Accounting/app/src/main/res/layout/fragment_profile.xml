@@ -22,9 +22,10 @@
                 android:orientation="horizontal">
                 <LinearLayout
                     android:id="@+id/llUserProfile1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
                     <ImageView
                         android:id="@+id/ivProfileAvatar"
                         android:layout_width="50dp"
@@ -49,6 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="end"
+                    android:layout_weight="1"
                     >
                     <LinearLayout
                         android:id="@+id/llckAttendance"
@@ -231,19 +233,9 @@
                     android:textSize="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="15dp"
+
                     android:textColor="#000000"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    >
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/right_point_2"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="15dp"/>
-                </LinearLayout>
+
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/llUserProfileBillLower"

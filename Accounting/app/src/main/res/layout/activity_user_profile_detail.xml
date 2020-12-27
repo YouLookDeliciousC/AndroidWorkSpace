@@ -35,7 +35,7 @@
                 android:layout_height="match_parent"
                 android:gravity="right">
                 <ImageView
-                    android:id="@+id/ivProfileDetailAvatar"
+                    android:id="@+id/imgProfileDetailAvatar"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/avatar1"
