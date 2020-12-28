@@ -4,7 +4,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -118,8 +120,10 @@ public class UserProfileDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final EditText editText = new EditText(UserProfileDetailActivity.this);
-
                 AlertDialog.Builder inputDialog = new AlertDialog.Builder(UserProfileDetailActivity.this);
+
+                editText.setInputType(InputType.TYPE_CLASS_PHONE);
+                editText.setRawInputType(Configuration.KEYBOARD_12KEY);
                 inputDialog.setTitle("New Phone Number").setView(editText);
                 inputDialog.setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {

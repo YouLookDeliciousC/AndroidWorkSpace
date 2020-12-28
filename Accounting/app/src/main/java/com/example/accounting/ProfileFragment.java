@@ -3,8 +3,10 @@ package com.example.accounting;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -187,28 +189,29 @@ public class ProfileFragment extends Fragment {
         btnSetBudget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final EditText editText = new EditText(getContext());
-
                 AlertDialog.Builder inputDialog = new AlertDialog.Builder(getContext());
-                inputDialog.setTitle("New Budget").setView(editText);
+                final EditText input = new EditText(getContext());
+                input.setInputType(InputType.TYPE_CLASS_NUMBER);
+                input.setRawInputType(Configuration.KEYBOARD_12KEY);
+
+                inputDialog.setView(input);
+                inputDialog.setTitle("New Budget");
                 inputDialog.setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                String newBudget = editText.getText().toString().trim();
+                                String newBudget = input.getText().toString().trim();
                                 String oldBudget = tvMBudget.getText().toString().trim();
                                 if(newBudget.isEmpty() || newBudget.equals(oldBudget)){
                                     return;
                                 }
-
                                 boolean flag = db.setBudget(MainActivity.GLOBAL_ID, newBudget);
                                 if(!flag){
                                     showMessage("Error","Fail to set new budget");
                                 }
-                                tvMBudget.setText(newBudget);
+                                tvMBudget.setText(String.valueOf(Integer.parseInt(newBudget)));
                                 showBill();
                                 Toast.makeText(getContext(), "You got new budget!", Toast.LENGTH_LONG).show();
-
                             }
                         }).show();
             }
