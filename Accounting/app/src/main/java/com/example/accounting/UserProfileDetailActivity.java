@@ -134,6 +134,10 @@ public class UserProfileDetailActivity extends AppCompatActivity {
                                 if(newPhone.isEmpty() || newPhone.equals(oldPhone)){
                                     return;
                                 }
+                                if(newPhone.length() > 20){
+                                    Toast.makeText(getApplicationContext(), " Your phone number should be within 20 DIGITs", Toast.LENGTH_LONG).show();
+                                    return;
+                                }
                                 if(db.hasSamePhone(newPhone)){
                                     showMessage("Alert", "Fail to set the new phone because it is already in use.One phone number for one account.");
                                     return;
@@ -173,6 +177,10 @@ public class UserProfileDetailActivity extends AppCompatActivity {
                                 String newNick = editText.getText().toString().trim();
                                 String oldNick = textViewNick.getText().toString().trim();
                                 if(newNick.isEmpty() || newNick.equals(oldNick)){
+                                    return;
+                                }
+                                if(newNick.length() > 12){
+                                    Toast.makeText(getApplicationContext(),"Your nick name should be within 12 CHARs",Toast.LENGTH_LONG).show();
                                     return;
                                 }
                                 if(db.hasSameNick(newNick)){

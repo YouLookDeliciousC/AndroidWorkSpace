@@ -61,6 +61,18 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Please confirm your password.", Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(name.length() > 12){
+                    Toast.makeText(getApplicationContext(),"Your name should be within 12 CHARs",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(nick.length() > 12){
+                    Toast.makeText(getApplicationContext(),"Your nick name should be within 12 CHARs",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(phone.length() > 20){
+                    Toast.makeText(getApplicationContext(),"Your phone number should be within 20 DIGITs",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if(db.hasSameNick(nick)){
                     Toast.makeText(getApplicationContext(),"The nick name is in use", Toast.LENGTH_LONG).show();
                     return;
