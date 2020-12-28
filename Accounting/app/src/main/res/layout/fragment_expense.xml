@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
+        android:orientation="vertical">
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-
             android:columnCount="3"
             android:rowCount="10">
             <ImageView
@@ -23,75 +20,55 @@
                 android:paddingVertical="20dp"
                 android:backgroundTint="@color/icon_selector"
                 android:clickable="true"
-                android:tag="Food"
-
-                />
+                android:tag="Food" />
             <ImageView
                 android:id="@+id/icons2"
                 android:src="@drawable/beverage"
                 android:layout_columnWeight="1"
                 android:paddingVertical="20dp"
-                android:tag="Beverage"
-
-                />
+                android:tag="Beverage" />
             <ImageView
                 android:id="@+id/icons3"
                 android:src="@drawable/shopping"
                 android:layout_columnWeight="1"
                 android:paddingVertical="20dp"
-                android:tag="Shopping"
-
-                />
+                android:tag="Shopping" />
             <ImageView
                 android:id="@+id/icons4"
                 android:src="@drawable/bus"
                 android:layout_columnWeight="1"
                 android:paddingVertical="20dp"
-                android:tag="Bus"
-                />
-
-
+                android:tag="Bus" />
         </GridLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="bottom">
-
-                <Button
-                    android:id="@+id/getDate"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:text="Date"
-                    android:layout_marginLeft="10dp"
-                    />
-
-                <EditText
-                    android:id="@+id/getAmount"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:hint="Amount"
-                    android:layout_marginLeft="10dp"/>
-                <Button
-                    android:id="@+id/btnExpenseConfirm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Confirm"
-                    android:layout_marginHorizontal="10dp"/>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp">
+        <Button
+            android:id="@+id/getDate"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:text="Date"
+            android:layout_marginLeft="10dp" />
+        <EditText
+            android:id="@+id/getAmount"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="Amount"
+            android:layout_marginLeft="10dp"/>
+        <Button
+            android:id="@+id/btnExpenseConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Confirm"
+            android:layout_marginHorizontal="10dp"/>
+    </LinearLayout>
+</RelativeLayout>

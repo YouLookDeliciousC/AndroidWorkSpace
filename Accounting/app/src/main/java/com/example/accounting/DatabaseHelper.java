@@ -5,11 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteQuery;
-import android.provider.ContactsContract;
-
 import androidx.annotation.Nullable;
-
 
 /* *
  *Author: Goat Chen
@@ -60,6 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long res = db.insert(TABLE_NAME_1,null,contentValues);
         return res != -1;
     }
+
     public String getAvatar(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT * FROM " + TABLE_NAME_1 + " WHERE ID = ?";
@@ -101,7 +98,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int flag = db.update(TABLE_NAME_1, contentValues, "ID = ?", new String[]{id});
         return flag != -1;
     }
-
 
     public String getBudget(String id){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -246,8 +242,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return res;
     }
-
-
-
-
 }

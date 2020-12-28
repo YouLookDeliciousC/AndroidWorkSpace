@@ -1,7 +1,6 @@
 package com.example.accounting;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -54,11 +53,14 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Please enter your information COMPLETELY.", Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(password.length() < 6 || password.length() > 18){
+                    Toast.makeText(getApplicationContext(),"Your password should be between 6 and 18 digits", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if(cPassword.isEmpty() || !password.equals(cPassword)){
                     Toast.makeText(getApplicationContext(),"Please confirm your password.", Toast.LENGTH_LONG).show();
                     return;
                 }
-
                 if(db.hasSameNick(nick)){
                     Toast.makeText(getApplicationContext(),"The nick name is in use", Toast.LENGTH_LONG).show();
                     return;

@@ -1,24 +1,16 @@
 package com.example.accounting;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.MediaController;
 import android.widget.TextView;
-import android.widget.VideoView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -32,6 +24,7 @@ public class NotificationFragment extends Fragment {
     ListView lvItems;
     TextView tvOverallIncome;
     TextView tvOverallExpense;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,7 +38,6 @@ public class NotificationFragment extends Fragment {
         lvItems = getActivity().findViewById(R.id.lvStatisticsShowItem);
         tvOverallIncome = getActivity().findViewById(R.id.tvStatIncome);
         tvOverallExpense = getActivity().findViewById(R.id.tvStatExpense);
-
 
         db = new DatabaseHelper(getContext());
 
@@ -99,11 +91,11 @@ public class NotificationFragment extends Fragment {
             if(itemMap.get(keySet[i]) >= 0){
                 ans = temp/inc*100;
                 String d = df.format(ans);
-                percentage[i] = d + " %";
+                percentage[i] = d + " % in income";
             }else{
                 ans = temp / exp*100;
                 String d = df.format(ans);
-                percentage[i] = d + " %";
+                percentage[i] = d + " % in expense";
             }
         }
 
@@ -112,8 +104,6 @@ public class NotificationFragment extends Fragment {
         lvItems.setAdapter(adapter);
         tvOverallIncome.setText(String.valueOf(inc));
         tvOverallExpense.setText(String.valueOf(exp));
-
-
     }
 
     private Integer imgStrToID(String str){

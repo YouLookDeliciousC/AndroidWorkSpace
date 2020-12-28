@@ -1,24 +1,20 @@
 package com.example.accounting;
 
-import android.content.ClipData;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.security.keystore.StrongBoxUnavailableException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.whiteelephant.monthpicker.MonthPickerDialog;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,8 +37,6 @@ public class DetailFragment extends Fragment {
     List<String> itemDateList;
     List<String> itemAmountList;
     ListView lvItems;
-/*    ListView lvItemDate;
-    ListView lvItemAmount;*/
 
     Button btnMonthPicker;
 
@@ -50,7 +44,10 @@ public class DetailFragment extends Fragment {
     TextView tvDetailIncome;
     TextView tvDetailExpense;
 
-
+    CustomListAdapter adapter;
+    String[] itemArray;
+    String[] dateArray;
+    String[] amountArray;
 
     @Nullable
     @Override
@@ -68,12 +65,9 @@ public class DetailFragment extends Fragment {
         tvDetailIncome = getActivity().findViewById(R.id.tvDetailIncome);
         tvDetailExpense = getActivity().findViewById(R.id.tvDetailExpense);
 
-
         itemList = new ArrayList<>();
         itemDateList = new ArrayList<>();
         itemAmountList = new ArrayList<>();
-
-
 
         db = new DatabaseHelper(getContext());
 
@@ -84,7 +78,6 @@ public class DetailFragment extends Fragment {
         btnMonthPicker.setText(month);
         tvYear.setText(year);
 
-
         showItems();
         deleteItems();
         chooseMonth();
@@ -94,21 +87,48 @@ public class DetailFragment extends Fragment {
     private void deleteItems() {
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int position, long l) {
 
-
-                Toast.makeText(getContext(),"You long click " + i + " this items", Toast.LENGTH_LONG).show();
-
-
-
+                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                alert.setTitle("Alert");
+                alert.setMessage("Do you really want to delete this entry?");
+                alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String Ttag = itemArray[position];
+                        String Tdate = dateArray[position];
+                        String Tamount = amountArray[position];
+                        String roughData = db.getItems(MainActivity.GLOBAL_ID);
+                        String[] eachItem = roughData.split("鑫");
+                        String input = "";
+                        for(int j = 0; j < eachItem.length; j++){
+                            String[] temp = eachItem[j].split("杰");
+                            if(temp[0].equals(Ttag) && temp[1].equals(Tdate) && temp[2].equals(Tamount)){
+                                continue;
+                            }
+                            input += eachItem[j];
+                            input += "鑫";
+                        }
+                        boolean flag = db.addItems(MainActivity.GLOBAL_ID, input);
+                        if(!flag){
+                            showMessage("Error", "Error to delete entry");
+                        }
+                        showItems();
+                        Toast.makeText(getContext(), "you have deleted this entry", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                alert.show();
                 return false;
             }
         });
     }
 
     private void chooseMonth() {
-
-
         btnMonthPicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,7 +140,6 @@ public class DetailFragment extends Fragment {
                                 btnMonthPicker.setText(convertDigToStr(String.valueOf(selectedMonth+1)));
                                 tvYear.setText(String.valueOf(selectedYear));
                                 showItems();
-
                                 Toast.makeText(getContext(),(selectedMonth+1)+"/" + selectedYear, Toast.LENGTH_LONG).show();
                                  }
                             }, today.get(Calendar.YEAR), today.get(Calendar.MONTH));
@@ -132,7 +151,6 @@ public class DetailFragment extends Fragment {
                         .setMaxYear(2030)
                         .setTitle("Select month & year")
                         .build().show();
-
             }
         });
     }
@@ -164,13 +182,10 @@ public class DetailFragment extends Fragment {
             }
         }
 
-        String[] eachItem =(String[])list.toArray(new String[list.size()]);
+        String[] eachItem =list.toArray(new String[list.size()]);
 
-
-        /*System.out.println("first step " + eachItem.length);*/
         int amountOfItems = eachItem.length;
 
-        //String[] SortedItem = new String[amountOfItems];
         String tempDate;
 
         for (int i = 1; i < amountOfItems; ++ i) {
@@ -213,7 +228,6 @@ public class DetailFragment extends Fragment {
         tvDetailIncome.setText(String.valueOf(positive));
         tvDetailExpense.setText(String.valueOf(negative));
 
-
         String[] tempp;
         itemList.clear();
         itemDateList.clear();
@@ -221,23 +235,20 @@ public class DetailFragment extends Fragment {
 
         for(String item : eachItem){
             tempp = item.split("杰");
-            /*System.out.println("second step  " + temp.length);*/
             itemList.add(tempp[0]);
             itemDateList.add(tempp[1]);
             itemAmountList.add(tempp[2]);
         }
 
-        String[] itemArray = itemList.toArray(new String[itemList.size()]);
-        String[] dateArray = itemDateList.toArray(new String[itemDateList.size()]);
-        String[] amountArray = itemAmountList.toArray(new String[itemAmountList.size()]);
+        itemArray = itemList.toArray(new String[itemList.size()]);
+        dateArray = itemDateList.toArray(new String[itemDateList.size()]);
+        amountArray = itemAmountList.toArray(new String[itemAmountList.size()]);
         Integer[] imgIDArray = new Integer[itemArray.length];
         for(int i = 0; i < itemArray.length; ++ i){
             imgIDArray[i] = imgStrToID(itemArray[i]);
         }
 
-
-
-        CustomListAdapter adapter = new CustomListAdapter(getActivity(), itemArray, dateArray, amountArray, imgIDArray);
+        adapter = new CustomListAdapter(getActivity(), itemArray, dateArray, amountArray, imgIDArray);
 
         lvItems.setAdapter(adapter);
     }
@@ -292,7 +303,11 @@ public class DetailFragment extends Fragment {
         return strToDig.get(str);
     }
 
-
-
-
+    private void showMessage(String title, String buffer) {
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getContext());
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(buffer);
+        builder.show();
+    }
 }

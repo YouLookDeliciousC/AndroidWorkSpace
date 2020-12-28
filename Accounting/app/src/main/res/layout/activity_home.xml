@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".HomeActivity"
-
-    >
-
-
+    tools:context=".HomeActivity">
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
@@ -23,6 +19,4 @@
         app:itemIconTint="@color/selector_color"
         app:itemTextColor="@color/selector_color"
         app:menu="@menu/bottom_navigation" />
-
-
 </RelativeLayout>

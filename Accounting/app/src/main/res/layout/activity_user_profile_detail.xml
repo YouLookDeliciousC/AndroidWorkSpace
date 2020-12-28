@@ -16,12 +16,10 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="horizontal"
-            android:background="#FAFAFA"
-            >
+            android:background="#FAFAFA">
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -47,15 +45,7 @@
                     android:layout_marginTop="17dp"
                     android:layout_marginRight="10dp"
                     android:src="@drawable/right_point_2" />
-
-
-
-
-
             </LinearLayout>
-
-
-
         </LinearLayout>
         <LinearLayout
             android:id="@+id/llUserProfileDetailID"
@@ -64,13 +54,10 @@
             android:orientation="horizontal"
             android:layout_below="@+id/llUserProfileDetailAvatar"
             android:layout_marginTop="5dp"
-            android:background="#FAFAFA"
-            >
-
+            android:background="#FAFAFA">
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -91,12 +78,7 @@
                     android:textSize="20dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"/>
-
-
-
             </LinearLayout>
-
-
         </LinearLayout>
         <LinearLayout
             android:id="@+id/llUserProfileDetailNick"
@@ -105,13 +87,10 @@
             android:orientation="horizontal"
             android:layout_below="@+id/llUserProfileDetailID"
             android:layout_marginTop="5dp"
-            android:background="#FAFAFA"
-            >
-
+            android:background="#FAFAFA">
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -138,9 +117,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/right_point_2"/>
-
             </LinearLayout>
-
         </LinearLayout>
         <LinearLayout
             android:id="@+id/llUserProfileDetailGender"
@@ -149,13 +126,10 @@
             android:orientation="horizontal"
             android:layout_below="@+id/llUserProfileDetailNick"
             android:layout_marginTop="5dp"
-            android:background="#FAFAFA"
-            >
+            android:background="#FAFAFA">
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                >
-
+                android:layout_height="match_parent">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -182,9 +156,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/right_point_2"/>
-
             </LinearLayout>
-
         </LinearLayout>
         <LinearLayout
             android:id="@+id/llUserProfileDetailPhone"
@@ -193,12 +165,10 @@
             android:orientation="horizontal"
             android:layout_below="@+id/llUserProfileDetailGender"
             android:layout_marginTop="5dp"
-            android:background="#FAFAFA"
-            >
+            android:background="#FAFAFA">
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -225,12 +195,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/right_point_2"/>
-
             </LinearLayout>
-
-
         </LinearLayout>
-
         <Button
             android:id="@+id/btnLogout"
             android:background="#FAFAFA"
@@ -241,9 +207,5 @@
             android:layout_marginTop="30dp"
             android:layout_below="@id/llUserProfileDetailPhone"
             android:layout_centerHorizontal="true"/>
-
-
-
     </RelativeLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

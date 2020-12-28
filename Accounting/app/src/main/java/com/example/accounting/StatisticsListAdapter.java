@@ -15,14 +15,11 @@ import android.widget.TextView;
 
 public class StatisticsListAdapter extends ArrayAdapter {
     private final Activity context;
-
     private final Integer[] imageIDarray;
-
     private final String[] itemNameArray;
-
-
     private final String[] amountArray;
     private final String[] percentageArray;
+
     public StatisticsListAdapter(Activity context, String[] itemNameArrayParam, String[] amountArrayParam, String[] percentageArrayParam, Integer[] imageIDArrayParam){
 
         super(context,R.layout.statistics_list_row , itemNameArrayParam);
@@ -40,19 +37,16 @@ public class StatisticsListAdapter extends ArrayAdapter {
 
         //this code gets references to objects in the listview_row.xml file
         TextView nameTextField = rowView.findViewById(R.id.rowSItem);
-
         TextView amountTextField = rowView.findViewById(R.id.rowSAmount);
         TextView percentageTextField = rowView.findViewById(R.id.rowSPercent);
         ImageView imageView = rowView.findViewById(R.id.rowSImageView1ID);
 
         //this code sets the values of the objects to values from the arrays
-
         nameTextField.setText(itemNameArray[position]);
         percentageTextField.setText(percentageArray[position]);
         amountTextField.setText(amountArray[position]);
         imageView.setImageResource(imageIDarray[position]);
 
         return rowView;
-
     }
 }

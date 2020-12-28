@@ -10,7 +10,6 @@
         android:id="@+id/rlRegister1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <EditText
             android:id="@+id/etRegisterName"
             android:layout_width="wrap_content"
@@ -22,7 +21,6 @@
             android:layout_marginTop="50dp"
             android:width="200dp"
             android:textSize="18sp"/>
-
         <EditText
             android:id="@+id/etRegisterNick"
             android:layout_width="wrap_content"
@@ -33,11 +31,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/etRegisterName"
             android:layout_marginTop="15dp"
-            android:width="200dp"
-
-            />
-
-
+            android:width="200dp" />
 
         <EditText
             android:id="@+id/etRegisterPhone"
@@ -56,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Password"
+            android:hint="Password(6-18 digits)"
             android:inputType="textPassword"
             tools:layout_editor_absoluteX="79dp"
             tools:layout_editor_absoluteY="366dp"
@@ -86,9 +80,5 @@
             android:layout_below="@+id/etRegisterCPassword"
             android:layout_marginTop="30dp"
             android:width="200dp"/>
-
     </RelativeLayout>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

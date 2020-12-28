@@ -13,11 +13,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".AvatarActivity"></activity>
         <activity android:name=".NewLogActivity" />
-        <activity android:name=".LogActivity" />
         <activity android:name=".DetailFragment" />
         <activity android:name=".UserProfileDetailActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".UserProfileActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity">

@@ -8,17 +8,14 @@
 <RelativeLayout
     android:id="@+id/rlLogin1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-
+    android:layout_height="match_parent">
     <ImageView
         android:id="@+id/ivLoginAvatar"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:src="@drawable/welcome_image"
-        />
+        android:src="@drawable/welcome_image" />
     <EditText
         android:id="@+id/etLoginUName"
         android:layout_width="wrap_content"
@@ -30,7 +27,6 @@
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
         android:width="200dp"/>
-
     <EditText
         android:id="@+id/etLoginPassword"
         android:layout_width="wrap_content"
@@ -41,8 +37,7 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:width="200dp"
-        />
+        android:width="200dp" />
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="200dp"
@@ -51,41 +46,7 @@
         android:textSize="18sp"
         android:layout_below="@+id/etLoginPassword"
         android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
-        />
-
-
-    <!--<TextView
-        android:id="@+id/tvLoginUName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User Name:"
-        android:textSize="18sp"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="274dp"
-        android:layout_below="@+id/etLoginPassword"
-        android:layout_marginTop="50dp"/>-->
-
-    <!--<TextView
-        android:id="@+id/tvLoginPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password:"
-        android:textSize="18sp"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="353dp" />-->
-
-    <TextView
-        android:id="@+id/tvLoginForget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forget Password?"
-        android:layout_below="@+id/btnLogin"
-        android:layout_marginTop="3dp"
-        android:textSize="13sp"
-        android:layout_alignStart="@+id/btnLogin"
-         />
-
+        android:layout_centerHorizontal="true" />
     <TextView
         android:id="@+id/tvLoginRegister"
         android:layout_width="wrap_content"
@@ -94,15 +55,8 @@
         android:layout_below="@+id/btnLogin"
         android:layout_marginTop="3dp"
         android:textSize="13sp"
-
         android:layout_alignEnd="@+id/btnLogin"
-
         />
 
-
-
-
 </RelativeLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,15 +2,13 @@ package com.example.accounting;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
-import java.io.BufferedReader;
+import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,10 +23,8 @@ public class AvatarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avatar);
 
-
         rgAvatar = findViewById(R.id.rgAvatar);
         db = new DatabaseHelper(this);
-
 
         rgAvatar.check(convertId(MainActivity.GLOBAL_AVATAR));
 
@@ -47,6 +43,7 @@ public class AvatarActivity extends AppCompatActivity {
                 }
                 MainActivity.GLOBAL_AVATAR = choice;
                 Intent intent = new Intent(AvatarActivity.this, HomeActivity.class);
+                Toast.makeText(getApplicationContext(), "Your avatar has been changed!", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 finish();
 

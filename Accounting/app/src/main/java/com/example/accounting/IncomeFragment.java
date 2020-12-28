@@ -2,6 +2,7 @@ package com.example.accounting;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,10 +68,6 @@ public class IncomeFragment extends Fragment implements View.OnClickListener{
         String dateStringParse = sdf.format(date);
         btnGetDate.setText(dateStringParse);
 
-
-
-        /*String s = (String) iconImg1.getTag();
-        System.out.println(s);*/
         confirmIncome();
         changeDate();
     }
@@ -86,25 +83,20 @@ public class IncomeFragment extends Fragment implements View.OnClickListener{
     }
 
     public  void showDatePickerDialog(Activity activity, Calendar calendar) {
-        // Calendar 需要这样来得到
-        // Calendar calendar = Calendar.getInstance();
-        // 直接创建一个DatePickerDialog对话框实例，并将它显示出来
+        // Calendar
         new DatePickerDialog(activity,
-                // 绑定监听器(How the parent is notified that the date is set.)
+                // How the parent is notified that the date is set.
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        // 此处得到选择的时间，可以进行你想要的操作
                         monthOfYear ++;
 
                         btnGetDate.setText(year + "/" + monthOfYear + "/" + dayOfMonth);
 
-                        Toast.makeText( getContext(), year + "年" + monthOfYear
-                                + "月" + dayOfMonth + "日",Toast.LENGTH_SHORT).show();
                     }
                 }
-                // 设置初始日期
+                // initial time
                 ,calendar.get(Calendar.YEAR)
                 ,calendar.get(Calendar.MONTH)
                 ,calendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -117,12 +109,12 @@ public class IncomeFragment extends Fragment implements View.OnClickListener{
                 String date = btnGetDate.getText().toString().trim();
                 String amount = tvAmount.getText().toString().trim();
                 if(tag == null || tag.isEmpty()){
-                    Toast.makeText(getContext(), "Please choose one category for your bill", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Please choose one category for your income", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if(amount.isEmpty()){
-                    Toast.makeText(getContext(),"Please enter your bill", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Please enter the amount", Toast.LENGTH_LONG).show();
                     return;
                 }
                 String s = db.getItems(MainActivity.GLOBAL_ID);
@@ -134,13 +126,13 @@ public class IncomeFragment extends Fragment implements View.OnClickListener{
                     return;
                 }
                 Toast.makeText(getContext(),"Log successfully", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getContext(), HomeActivity.class);
+                startActivity(i);
                 System.out.println(newGroup);
                 getActivity().finish();
-
             }
         });
     }
-
 
     @Override
     public void onClick(View view) {
@@ -159,6 +151,8 @@ public class IncomeFragment extends Fragment implements View.OnClickListener{
                 chosenItem = iconImg4;
                 break;
         }
+
         tag = (String) chosenItem.getTag();
+        Toast.makeText(getContext(),  "You choose " +  tag, Toast.LENGTH_SHORT).show();
     }
 }

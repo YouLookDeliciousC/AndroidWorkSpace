@@ -19,9 +19,7 @@
         android:layout_alignParentTop="true"
         android:background="@color/basicColorDark"
         app:itemIconSize="30dp"
-
         app:itemIconTint="@color/icon_selector"
         app:itemTextColor="@color/icon_selector"
         app:menu="@menu/log_type_navigation" />
-
 </RelativeLayout>

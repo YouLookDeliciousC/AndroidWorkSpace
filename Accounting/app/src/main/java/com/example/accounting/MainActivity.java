@@ -1,9 +1,6 @@
 package com.example.accounting;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,7 +31,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         },loading_time);
-
     }
-
 }

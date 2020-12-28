@@ -2,13 +2,9 @@ package com.example.accounting;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.Manifest;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,7 +44,6 @@ public class UserProfileDetailActivity extends AppCompatActivity {
         textViewGender = findViewById(R.id.tvProfileDetailGender);
 
         iniData();
-
         logout();
         modifyAvatar();
         modifyNickName();
@@ -62,7 +57,6 @@ public class UserProfileDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(UserProfileDetailActivity.this, AvatarActivity.class);
                 startActivity(i);
-
             }
         });
     }
@@ -77,7 +71,6 @@ public class UserProfileDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int checkedNum = 0;
                 String checkedGender = textViewGender.getText().toString().trim();
-                //String[] gender = {"Male", "Female"};
                 for(String i : items){
                     if(checkedGender.equals(i)){
                         break;
@@ -89,7 +82,7 @@ public class UserProfileDetailActivity extends AppCompatActivity {
                 AlertDialog.Builder singleChoiceDialog =
                         new AlertDialog.Builder(UserProfileDetailActivity.this);
                 singleChoiceDialog.setTitle("Your Gender");
-                // 第二个参数是默认选项，此处设置为0
+                // second param is default, here set 0
                 singleChoiceDialog.setSingleChoiceItems(items, checkedNum,
                         new DialogInterface.OnClickListener() {
                             @Override
@@ -110,7 +103,7 @@ public class UserProfileDetailActivity extends AppCompatActivity {
                                     }
                                     textViewGender.setText(items[yourChoice]);
                                     Toast.makeText(UserProfileDetailActivity.this,
-                                            "你选择了" + items[yourChoice],
+                                            "You choose " + items[yourChoice],
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -118,9 +111,6 @@ public class UserProfileDetailActivity extends AppCompatActivity {
                 singleChoiceDialog.show();
             }
         });
-
-
-
     }
 
     private void modifyPhone() {
@@ -149,22 +139,19 @@ public class UserProfileDetailActivity extends AppCompatActivity {
                                     showMessage("Error","Fail to set new phone number");
                                 }
                                 textViewPhone.setText(newPhone);
+                                MainActivity.GLOBAL_PHONE = newPhone;
                                 Toast.makeText(getApplicationContext(), "You got new phone number!", Toast.LENGTH_LONG).show();
-
                             }
                         }).show();
             }
         });
-
     }
-
     private void iniData() {
         imgAvatar.setImageResource(AvatarActivity.convertAvatar(MainActivity.GLOBAL_AVATAR));
         textViewNick.setText(MainActivity.GLOBAL_USERNAME);
         textViewPhone.setText(MainActivity.GLOBAL_PHONE);
         textViewId.setText(MainActivity.GLOBAL_ID);
         textViewGender.setText(db.findGender(MainActivity.GLOBAL_ID));
-
     }
 
     private void modifyNickName() {
@@ -193,14 +180,12 @@ public class UserProfileDetailActivity extends AppCompatActivity {
                                     showMessage("Error","Fail to set new nick name");
                                 }
                                 textViewNick.setText(newNick);
+                                MainActivity.GLOBAL_USERNAME = newNick;
                                 Toast.makeText(getApplicationContext(), "You got new nick name!", Toast.LENGTH_LONG).show();
-
                             }
                         }).show();
-
             }
         });
-
     }
 
     private void logout() {
@@ -216,7 +201,6 @@ public class UserProfileDetailActivity extends AppCompatActivity {
                 MainActivity.GLOBAL_PHONE="";
                 MainActivity.GLOBAL_REALNAME="";
                 finish();
-
             }
         });
     }
@@ -228,6 +212,4 @@ public class UserProfileDetailActivity extends AppCompatActivity {
         builder.setMessage(buffer);
         builder.show();
     }
-
-
 }

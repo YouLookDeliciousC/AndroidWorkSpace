@@ -41,11 +41,13 @@ public class ChartFragment extends Fragment {
     Button btnWeek;
     Button btnMonth;
     Button btnYear;
-
     LineChartView lineChartView;
+
     String[] axisData = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept",
             "Oct", "Nov", "Dec"};
     int[] yAxisData = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+    int maxOfChart;
 
     @Nullable
     @Override
@@ -62,14 +64,11 @@ public class ChartFragment extends Fragment {
         btnMonth = getActivity().findViewById(R.id.btnBalMonth);
         btnYear = getActivity().findViewById(R.id.btnBalYear);
 
-
         pressWeek();
         weeklyChart();
         monthlyChart();
         yearlyChart();
         showChart();
-
-
     }
 
     private void pressWeek() {
@@ -86,7 +85,6 @@ public class ChartFragment extends Fragment {
 
         List yAxisValues = new ArrayList();
         List axisValues = new ArrayList();
-
 
         Line line = new Line(yAxisValues).setColor(Color.parseColor("#9C27B0"));
 
@@ -118,7 +116,7 @@ public class ChartFragment extends Fragment {
 
         lineChartView.setLineChartData(data);
         Viewport viewport = new Viewport(lineChartView.getMaximumViewport());
-        viewport.top = 110;
+        viewport.top = maxOfChart + 10;
         lineChartView.setMaximumViewport(viewport);
         lineChartView.setCurrentViewport(viewport);
     }
@@ -144,6 +142,8 @@ public class ChartFragment extends Fragment {
                     return;
                 }
                 String[] eachItem = longSen.split("鑫");
+                maxOfChart = Integer.MIN_VALUE;
+
                 for(String item : eachItem){
                     String[] temp = item.split("杰");
                     String[] nowTemp = temp[1].split("/");
@@ -152,18 +152,18 @@ public class ChartFragment extends Fragment {
                         for(int i = 0; i < 12; ++ i){
                             if(nowTemp[1].equals(xTemp[i])){
                                 y[i] += Integer.parseInt(temp[2]);
+                                if(maxOfChart < y[i]){
+                                    maxOfChart = y[i];
+                                }
                             }
                         }
-
                     }
                 }
-
                 axisData= x;
                 yAxisData = y;
                 showChart();
             }
         });
-
     }
 
     private void monthlyChart() {
@@ -198,11 +198,15 @@ public class ChartFragment extends Fragment {
                     return;
                 }
                 String[] eachItem = longSen.split("鑫");
+                maxOfChart = Integer.MIN_VALUE;
                 for(String item : eachItem){
                     String[] temp = item.split("杰");
                     String[] nowTemp = temp[1].split("/");
                     if(nowTemp[0].equals(year) && nowTemp[1].equals(month)){
                         y[Integer.parseInt(nowTemp[2])-1] += Integer.parseInt(temp[2]);
+                        if(maxOfChart < y[Integer.parseInt(nowTemp[2])-1]){
+                            maxOfChart = y[Integer.parseInt(nowTemp[2])-1];
+                        }
                     }
                 }
                 axisData = daysStr;
@@ -228,16 +232,7 @@ public class ChartFragment extends Fragment {
             trimList.add(addIn);
         }
 
-
-
         String[] newList = trimList.toArray(new String[trimList.size()]);
-        System.out.println("=====================");
-        for(int i = 0; i <originPast.length; ++ i){
-            System.out.println(originPast[i]);
-        }
-
-
-
 
         String longSen = db.getItems(MainActivity.GLOBAL_ID);
         if(longSen.isEmpty()){
@@ -298,8 +293,12 @@ public class ChartFragment extends Fragment {
             xy.put(temp[1],value);
         }
         int[] data = new int[7];
+        maxOfChart = Integer.MIN_VALUE;
         for(int i = 0; i < 7; ++ i){
             data[i] = xy.get(originPast[i]);
+            if(maxOfChart < data[i]){
+                maxOfChart = data[i];
+            }
         }
         yAxisData = data;
         showChart();
@@ -311,7 +310,6 @@ public class ChartFragment extends Fragment {
         Date today = calendar.getTime();
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
         String result = format.format(today);
-        /*Log.e(null, result);*/
         return result;
     }
     public  List<String> getMonthFullDay(int year , int month){
@@ -321,9 +319,7 @@ public class ChartFragment extends Fragment {
         Calendar cal = Calendar.getInstance();
         cal.clear();
         cal.set(Calendar.YEAR, year);
-
         cal.set(Calendar.MONTH, month-1 );
-
         cal.set(Calendar.DAY_OF_MONTH,1);
         int count = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         for (int j = 1; j <= count ; j++) {

@@ -15,16 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -32,7 +28,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 import static android.Manifest.permission.CALL_PHONE;
 
 
@@ -60,7 +55,6 @@ public class ProfileFragment extends Fragment {
     LinearLayout llClickAtt;
     TextView tvContAtt;
     TextView tvOverallAtt;
-
     LinearLayout llContact;
 
     Button btnSetBudget;
@@ -79,10 +73,11 @@ public class ProfileFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         db = new DatabaseHelper(getContext());
-        linearLayoutTop = getActivity().findViewById(R.id.llUserProfile1);
 
+        linearLayoutTop = getActivity().findViewById(R.id.llUserProfile1);
         textViewUserName = getActivity().findViewById(R.id.tvProfileUserName);
         textViewUserName.setText(MainActivity.GLOBAL_USERNAME);
+
         tvMonth = getActivity().findViewById(R.id.tvProfileMonth);
         tvIncome = getActivity().findViewById(R.id.tvProfileIncome);
         tvExpense = getActivity().findViewById(R.id.tvProfileExpense);
@@ -110,10 +105,7 @@ public class ProfileFragment extends Fragment {
         circleBar.setIndeterminate(false);
         imgAvatar.setImageResource(AvatarActivity.convertAvatar(MainActivity.GLOBAL_AVATAR));
 
-
-
         EnterUserProfileDetail();
-
         contactUs();
         showBill();
         setBudget();
@@ -126,10 +118,6 @@ public class ProfileFragment extends Fragment {
         String[] roughData = longSen.split("鑫");
         tvContAtt.setText(roughData[0] + " Days");
         tvOverallAtt.setText(roughData[1] + " Days");
-
-
-
-
     }
 
     private void contactUs() {
@@ -175,8 +163,6 @@ public class ProfileFragment extends Fragment {
 
                 String yesterday= format.format(calendarY.getTime());
 
-                /*System.out.println(date2);*/
-
                 int con;
                 if(yesterday.equals(roughData[2])){
                   con = Integer.parseInt(roughData[0]) + 1;
@@ -192,8 +178,7 @@ public class ProfileFragment extends Fragment {
                 }
                 tvContAtt.setText(con + " Days");
                 tvOverallAtt.setText(overall + " Days");
-
-                showMessage("Attendance Success", "You have kept keeping accounts for 1 consecutive days! Keep Going!!");
+                showMessage("Attendance Success", "You have kept keeping accounts for "+ con +" consecutive days! Keep Going!!");
             }
         });
     }
@@ -238,8 +223,6 @@ public class ProfileFragment extends Fragment {
         tvMonth.setText(month);
         tvTitle.setText(month + " Overall Budget");
 
-
-
         String longSen = db.getItems(MainActivity.GLOBAL_ID);
         if(longSen.isEmpty()){
             return;
@@ -262,8 +245,7 @@ public class ProfileFragment extends Fragment {
             }
         }
 
-        String[] eachItem =(String[])list.toArray(new String[list.size()]);
-
+        String[] eachItem =list.toArray(new String[list.size()]);
 
         int negative = 0;
         int positive = 0;
@@ -293,24 +275,6 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private String convertDigToStr(String dig){
-        final Map<String,String> digiToString = new HashMap<>();
-
-        digiToString.put("1","Jan");
-        digiToString.put("2","Feb");
-        digiToString.put("3","Mar");
-        digiToString.put("4","Apr");
-        digiToString.put("5","May");
-        digiToString.put("6","Jun");
-        digiToString.put("7","Jul");
-        digiToString.put("8","Aug");
-        digiToString.put("9","Sep");
-        digiToString.put("10","Oct");
-        digiToString.put("11","Nov");
-        digiToString.put("12","Dec");
-        return digiToString.get(dig);
-    }
-
     private String convertStrToDig(String str){
         final Map<String,String> strToDig = new HashMap<>();
 
@@ -338,6 +302,7 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
+
     private void showMessage(String title, String buffer) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setCancelable(true);

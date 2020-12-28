@@ -71,7 +71,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-
                 android:tag="avatar1"
                 android:text="1"
                 android:textColor="@color/backgroundCard"/>
@@ -81,7 +80,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-
                 android:tag="avatar2"
                 android:text="2"
                 android:textColor="@color/backgroundCard"/>
@@ -91,7 +89,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-
                 android:tag="avatar3"
                 android:text="3"
                 android:textColor="@color/backgroundCard"/>
@@ -101,13 +98,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-
                 android:tag="avatar4"
                 android:text="4"
                 android:textColor="@color/backgroundCard"/>
-
-
-
         </RadioGroup>
 
         <Button
@@ -118,8 +111,4 @@
             android:textSize="20dp"
             android:layout_marginTop="20dp"/>
     </LinearLayout>
-
-
-
-
 </RelativeLayout>

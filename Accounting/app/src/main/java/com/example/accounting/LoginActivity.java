@@ -17,9 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     DatabaseHelper db;
 
     EditText editUserName;
-    EditText editPhone;
     EditText editPassword;
-    EditText editCPassword;
     Button buttonLogin;
     TextView buttonRegister;
     TextView buttonForget;
@@ -34,17 +32,11 @@ public class LoginActivity extends AppCompatActivity {
         editPassword = findViewById(R.id.etLoginPassword);
         buttonLogin = findViewById(R.id.btnLogin);
         buttonRegister = findViewById(R.id.tvLoginRegister);
-        buttonForget = findViewById(R.id.tvLoginForget);
 
         login();
         register();
-        forgetPassword();
-
     }
 
-    private void forgetPassword() {
-
-    }
 
     private void register() {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
@@ -90,10 +82,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
     }
 
     private void showMessage(String title, String buffer) {
