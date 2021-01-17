@@ -158,20 +158,19 @@ public class DetailFragment extends Fragment {
     private void showItems() {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-
         String longSen = db.getItems(MainActivity.GLOBAL_ID);
         if(longSen.isEmpty()){
             return;
         }
         String[] roughData = longSen.split("鑫");
         int lengthOfRough = roughData.length;
-
+        System.out.println(longSen);
         List<String> list = new LinkedList<>();
 
         String year = tvYear.getText().toString().trim();
         String monthStr = btnMonthPicker.getText().toString().trim();
         String monthDig = convertStrToDig(monthStr);
-
+        System.out.println(year + " = " + monthStr + " = " + monthDig);
         for(int i = 0; i <lengthOfRough; ++ i){
             String[] temp = roughData[i].split("杰");
             System.out.println(temp[1].split("/")[0]);
@@ -181,7 +180,9 @@ public class DetailFragment extends Fragment {
                 }
             }
         }
-
+        for(int i = 0; i < list.size(); i ++){
+            System.out.println(list.get(i)+"+++++++++++++++");
+        }
         String[] eachItem =list.toArray(new String[list.size()]);
 
         int amountOfItems = eachItem.length;
@@ -274,15 +275,15 @@ public class DetailFragment extends Fragment {
     private String convertStrToDig(String str){
         final Map<String,String> strToDig = new HashMap<>();
 
-        strToDig.put("Jan","1");
-        strToDig.put("Feb","2");
-        strToDig.put("Mar","3");
-        strToDig.put("Apr","4");
-        strToDig.put("May","5");
-        strToDig.put("Jun","6");
-        strToDig.put("Jul","7");
-        strToDig.put("Aug","8");
-        strToDig.put("Sep","9");
+        strToDig.put("Jan","01");
+        strToDig.put("Feb","02");
+        strToDig.put("Mar","03");
+        strToDig.put("Apr","04");
+        strToDig.put("May","05");
+        strToDig.put("Jun","06");
+        strToDig.put("Jul","07");
+        strToDig.put("Aug","08");
+        strToDig.put("Sep","09");
         strToDig.put("Oct","10");
         strToDig.put("Nov","11");
         strToDig.put("Dec","12");

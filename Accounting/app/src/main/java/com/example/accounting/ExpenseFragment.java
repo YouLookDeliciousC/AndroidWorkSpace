@@ -20,6 +20,8 @@ import androidx.fragment.app.Fragment;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /* *
@@ -108,6 +110,11 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onClick(View view) {
                 String date = btnGetDate.getText().toString().trim();
+                String[] t = date.split("/");
+                String m = t[1];
+                m = convertSinToDig(m);
+                t[1] = m;
+                date = t[0] + "/" + t[1] + "/" + t[2];
                 String amount = tvAmount.getText().toString().trim();
                 if(tag == null || tag.isEmpty()){
                     Toast.makeText(getContext(), "Please choose one category for your bill", Toast.LENGTH_LONG).show();
@@ -153,5 +160,22 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener{
         }
         tag = (String) chosenItem.getTag();
         Toast.makeText(getContext(),  "You choose " +  tag, Toast.LENGTH_SHORT).show();
+    }
+    private String convertSinToDig(String str){
+        final Map<String,String> strToDig = new HashMap<>();
+
+        strToDig.put("1","01");
+        strToDig.put("2","02");
+        strToDig.put("3","03");
+        strToDig.put("4","04");
+        strToDig.put("5","05");
+        strToDig.put("6","06");
+        strToDig.put("7","07");
+        strToDig.put("8","08");
+        strToDig.put("9","09");
+        strToDig.put("10","10");
+        strToDig.put("11","11");
+        strToDig.put("12","12");
+        return strToDig.get(str);
     }
 }
