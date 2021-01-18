@@ -164,15 +164,24 @@ public class ExpenseFragment extends Fragment implements View.OnClickListener{
     private String convertSinToDig(String str){
         final Map<String,String> strToDig = new HashMap<>();
 
-        strToDig.put("1","01");
+        strToDig.put("1", "01");
+        strToDig.put("01", "01");
         strToDig.put("2","02");
+        strToDig.put("02", "02");
         strToDig.put("3","03");
+        strToDig.put("03", "03");
         strToDig.put("4","04");
+        strToDig.put("04", "04");
         strToDig.put("5","05");
+        strToDig.put("05", "05");
         strToDig.put("6","06");
+        strToDig.put("06", "06");
         strToDig.put("7","07");
+        strToDig.put("07", "07");
         strToDig.put("8","08");
+        strToDig.put("08", "08");
         strToDig.put("9","09");
+        strToDig.put("09", "09");
         strToDig.put("10","10");
         strToDig.put("11","11");
         strToDig.put("12","12");
